@@ -1,0 +1,14 @@
+São Paulo, 26 de Agosto de 2026.
+
+Digital: Composição de zeros e um, ou seja ele é binário.
+Analógico: 
+
+Liga os componentes em um computador são os barramentos
+RAM - Memória de acesso randômico
+ROM - Read only memory
+
+Fita K7 não é aleatória
+
+ROM - CD-ROM
+
+Computador digital: 
