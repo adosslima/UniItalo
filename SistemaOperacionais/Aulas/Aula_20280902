@@ -1,0 +1,18 @@
+São Paulo, 02 de Setembro de 2026.
+
+Tipos de Sistemas Operacionais
+MonoTarefa
+MultiTarefa
+Múltiplo Processadores
+
+Pesquisar - Comandos básicos do DOS.
+
+Criar várias pastas em único comando
+mkdir teste1 teste2 teste4
+md teste1 teste2 teste4
+
+Remover pasta
+rd teste1
+
+Change Directory
+cd teste1
