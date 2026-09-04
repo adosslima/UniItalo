@@ -19,4 +19,7 @@ Aplicação que irá atender a clínicas veterinárias:
 Site para divulgar a clínica:
   Dashboard (com dados coletados).
 
+Classificação da Informação = Centro de Custo. (Template do documento)
+
+GanttProject = Cronograma (No AVA).
 
