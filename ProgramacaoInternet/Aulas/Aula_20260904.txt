@@ -1,0 +1,22 @@
+São Paulo, 04 de Setembros de 2026.
+
+Projeto:
+Unidades de Estudo - Conceitos e Partes Teóricas - Complemento.
+Unidade1 - TEA1
+Unidade2 - TEA2
+.
+.
+.
+UnidadeX - TEAX
+
+Material de Apoio - Slides referente a matéria dada em aula.
+Avaliação do Professor - Projeto Corporativo
+
+Tema do Projeto:
+Aplicação que irá atender a clínicas veterinárias:
+  Coleta de dados -> Arquivo JSon
+
+Site para divulgar a clínica:
+  Dashboard (com dados coletados).
+
+
