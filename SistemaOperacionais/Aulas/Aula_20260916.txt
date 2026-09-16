@@ -1,0 +1,13 @@
+São Paulo, 16 de Setembro de 2026.
+
+Máquina Virtual: Virtual Box
+Pra que? Segurança
+Compartilha rescursos com a máquina hospedeira, exemplo: Memória.
+
+Windows XP
+Ram 64MB
+CPU 233Mhz
+HD 1.5GB
+
+Discos de intalação: ISO
+Máximo de 16 partições
