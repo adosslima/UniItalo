@@ -1,7 +1,7 @@
 São Paulo, 16 de Setembro de 2026.
 
 Máquina Virtual: Virtual Box
-Pra que? Segurança
+Pra que? Segurança/Teste
 Compartilha rescursos com a máquina hospedeira, exemplo: Memória.
 
 Windows XP
@@ -11,3 +11,8 @@ HD 1.5GB
 
 Discos de intalação: ISO
 Máximo de 16 partições
+
+NTFS
+FAT32
+
+
