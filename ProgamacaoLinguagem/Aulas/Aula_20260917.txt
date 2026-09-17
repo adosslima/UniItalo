@@ -11,6 +11,14 @@ Livro -> Registro -> Struct
   Horário  CHAR
   Status   INT (0 e 1)
 
+Menu
+  1-Cadastrar Livro
+  2-Listar Livros
+  3-Emprestar Livro
+  4-Devolver Livro
+  5-Sair
+
+
 
 
 
