@@ -1,3 +1,16 @@
 São Paulo, 17 de Setembro de 2026.
 
+Empréstimo
+Devolução
+
+Livro -> Registro -> Struct
+  Código   INT
+  Nome     CHAR
+  Autor    CHAR
+  Data     CHAR
+  Horário  CHAR
+  Status   INT (0 e 1)
+
+
+
 
