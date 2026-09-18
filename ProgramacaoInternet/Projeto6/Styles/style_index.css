@@ -1,0 +1,21 @@
+/* Folha de estilos do menu /*
+
+/* Estilos Globais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Ajuste rodapé no fim da página */
+body {
+    display: flex;
+    flex-direction: column;
+    /* Ocupa a altura total da página */
+    min-height: 100vh;
+}
+
+.navbar {
+    display: flex;
+}
