@@ -1,31 +1,52 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Index</title>
+    <!-- Usado pelas máquinas de busca -->
+    <meta name="description" content="Página Home">
+    <title>Projeto Integrado</title>
+    <!-- Caminho do meu CSS -->
+    <link rel="stylesheet" href="#">
 </head>
 
 <body>
     <header class="header">
-        <nav class="nav">
-            <a href="/" class="logo">Tigre</a>
-            <button class="hamburguer"></button>
-            <ul class="nav-list">
-                <li>
-                    <a href="#">Sobre</a>
-                    <a href="#">Projeto</a>
-                    <a href="#">Contato</a>
-                </li>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="#" class="logo-empresa">
+                    <img id="page-logo" class="lg" src="../Images/logo.jpg" alt="Logo da Empresa" width="200px" height="155px">
+                </a>
+            </div>
+            <div id="mobile-menu" class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul id="nav-list" class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Listas</a></li>
+                <li><a href="#">Tabelas</a></li>
+                <li><a href="#">Grids</a></li>
+                <li><a href="#">formulário</a></li>
+                <li><a href="#">Serviços</a></li>
             </ul>
         </nav>
     </header>
-    <main class="hero">
-        <h1>Título</h1>
-        <h2>Subtitulo</h2>
-        <h3>Texto</h3>
+    <main>
+        <div class="iframe-container">
+            <!-- Área central de exibição das páginas -->
+            <iframe id="meuIframe" src="#" name="iframe_paginas" class="iframe-page" title="Conteúdo Interno" allowfullscreen>
+            </iframe>
+        </div>
     </main>
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2026 Meu Site - Todos os direitos reservados.</p>
+            <p>Siga-nos nas Redes Sociais</p>
+        </div>
+    </footer>
 </body>
 
 </html>
