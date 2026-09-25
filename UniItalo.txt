@@ -1,1 +1,52 @@
-CD \Projeto\UniItalo
+CD \Projetos\UniItalo
+
+
+
+-----------------------------------------------------------------------------------------------
+-- Comandos de exemplo GIT
+-----------------------------------------------------------------------------------------------
+git clone https://github.com/
+
+git pull origin master --allow-unrelated-histories
+
+git push (envia para a nunvem (github) as alterações)
+git push -u origin master
+
+git log
+git show [número commit]
+git show (sem parametros mostra o ultimo commit)
+
+git config credential.helper store (armazena o usuário git sem ficar pedindo login)
+
+branch - ramificação
+git branch (sem parametros mostra todas as branchs)
+git merge [nome da branch] adiciona as alterações da branch X na branch Master, por exemplo
+
+git branch
+git checkout master
+git pull
+
+git checkout -b [nome_da_branc]  -- Criar uma branch
+git checkout    [nome_da_branc]  -- Entrar na branch
+
+git checkout [número commit] -- [nome do arquivo] (dá um rollback nas alterações)
+git checkuot -- [nome do arquivo] (recupera um arquivo excluído)
+git checkout [número commit] -- [nome do arquivo] (recupera um arquivo excluído)
+
+git status
+git checkout [caminho_completo][nome_completo_arquivo] -- Undo Checkout no arquivo
+git clean -fd                                          -- Excluir os arquivos que não são do projeto
+
+git add *
+git commit -m "*** Comentário sobre a alteração ***"   -- Checkin
+git push origin [nome_da_branc]
+
+git diff app.json
+
+
+git branch   -D [nome_da_branc]  -- Excluir uma branch
+
+git config -l
+
+git config --global user.name "Usuario"
+git config --global user.email "e-mal"
