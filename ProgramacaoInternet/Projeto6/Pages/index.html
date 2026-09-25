@@ -8,7 +8,7 @@
     <meta name="description" content="Página Home">
     <title>Projeto Integrado</title>
     <!-- Caminho do meu CSS -->
-    <link rel="stylesheet" href="#">
+    <link rel="stylesheet" href="../Styles/style_index.css">
 </head>
 
 <body>
@@ -16,7 +16,8 @@
         <nav class="navbar">
             <div class="logo">
                 <a href="#" class="logo-empresa">
-                    <img id="page-logo" class="lg" src="../Images/logo.jpg" alt="Logo da Empresa" width="200px" height="155px">
+                    <img id="page-logo" class="lg" src="../Images/logo.jpg" alt="Logo da Empresa" width="200px"
+                        height="155px">
                 </a>
             </div>
             <div id="mobile-menu" class="menu-toggle">
@@ -25,7 +26,7 @@
                 <span></span>
             </div>
             <ul id="nav-list" class="nav-links">
-                <li><a href="#">Home</a></li>
+                <li><a href="#" target="iframe_paginas">Home</a></li>
                 <li><a href="#">Listas</a></li>
                 <li><a href="#">Tabelas</a></li>
                 <li><a href="#">Grids</a></li>
@@ -34,11 +35,11 @@
             </ul>
         </nav>
     </header>
-    <main>
+    <main class="container">
         <div class="iframe-container">
             <!-- Área central de exibição das páginas -->
-            <iframe id="meuIframe" src="#" name="iframe_paginas" class="iframe-page" title="Conteúdo Interno" allowfullscreen>
-            </iframe>
+            <iframe id="meuIframe" src="#" name="iframe_paginas" class="iframe-page" title="Conteúdo Interno"
+                allowfullscreen></iframe>
         </div>
     </main>
     <footer>
@@ -47,6 +48,8 @@
             <p>Siga-nos nas Redes Sociais</p>
         </div>
     </footer>
+
+    <script src="../Scripts/script_index.js"></script>
 </body>
 
 </html>

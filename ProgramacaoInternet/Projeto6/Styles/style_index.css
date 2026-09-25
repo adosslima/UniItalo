@@ -16,6 +16,101 @@ body {
     min-height: 100vh;
 }
 
+body ::-webkit-scrollbar {
+    display: none;
+    overflow: hidden;
+    -ms-overflow-style: none;
+    /* Internet Explorer e Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
 .navbar {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    color: white;
+    padding: 15px 30px;
+}
+
+/* Completar */
+
+
+/* iframe */
+.container {
+    flex: 1;
+    /* Faz o conteudo principal crescer e empurrar o footer */
+    padding: 0px;
+    text-align: center;
+    display: grid;
+    width: 100%;
+    height: 0;
+    margin: 0;
+}
+
+.iframe-page {
+    margin-top: 0;
+    height: 100%;
+    width: 100%;
+    /* Isso cria uma barra de rolagem no elemento somente quando o conteudo excede a altura maxima do elemento */
+    overflow: hidden;
+    /* Ocultar a barra de rolagem para o intenet explorer, edge e firefox */
+    /* Internet explorer e Edge*/
+    -ms-overflow-style: none;
+    /* Firefox */
+    scrollbar-width: none;
+}
+
+.iframe-page ::-webkit-scrollbar {
+    display: none;
+    overflow: hidden;
+}
+
+.iframe-pagen iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80%;
+    /* Remove a borda padrão do iFrame */
+    border: none;
+    /* Em alguma situações pode ser neceessári um overflow: hidden aqui também */
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: auto;
+}
+
+.footer-content p {
+    font-size: 0.9rem;
+}
+
+/* Responsividade telas até 768px */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: flex;
+    }
+
+    .nav-links {
+        /* Esconde o menu original */
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        background-color: #444;
+        text-align: center;
+        padding: 15px 0;
+    }
+
+    .nav-links.active {
+        /* Mostra o menu quando ativo */
+        display: flex;
+    }
 }
