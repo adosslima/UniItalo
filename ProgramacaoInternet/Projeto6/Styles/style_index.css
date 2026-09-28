@@ -34,8 +34,35 @@ body ::-webkit-scrollbar {
     padding: 15px 30px;
 }
 
-/* Completar */
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
 
+.nav-links a {
+    color: white;
+    text-decoration: none;
+}
+
+.lg {
+    display: flex;
+    width: 70%;
+    height: 70%;
+}
+
+/* Menu Sanduiche (Escondido em telas grandes) */
+.menu-toggle {
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+}
+
+.menu-toggle span {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+}
 
 /* iframe */
 .container {
