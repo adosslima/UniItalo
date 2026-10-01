@@ -16,3 +16,7 @@ Clínica Veterinária
 
 -----------------------------
 Asunto da aula - Ponteiro
+
+Endereçamento de memória
+int idade = 25;
+O endereço é gerenciado pelo sistema opercional
