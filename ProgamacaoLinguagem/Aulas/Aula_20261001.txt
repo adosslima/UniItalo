@@ -1,0 +1,18 @@
+São Paulo, 01 de Outubro de 2026.
+-----------------------------
+Projeto Integrado do Semestre
+Clínica Veterinária
+
+1 - Cadastrar animal
+2 - Listar animais
+3 - Pesquisar animal
+4 - Registrar atendimento
+5 - Registrar serviço
+6 - Consultar histórico
+7 - Relatório de atendimentos
+8 - Faturamento
+9 - Sair
+
+
+-----------------------------
+Asunto da aula - Ponteiro
