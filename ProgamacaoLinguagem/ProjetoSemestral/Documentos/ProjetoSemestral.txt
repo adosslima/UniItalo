@@ -1,0 +1,73 @@
+
+
+1 - Cadastrar
+2 - Listar Pets
+3 - Pesquisar Pet
+4 - Registrar Atendimento
+5 - Registrar Serviço
+6 - Consultar Histórico
+7 - Relatório Atendimentos
+8 - Faturamento
+9 - Sair
+
+
+1.1 - Cadastrar Espécie
+1.2 - Cadastrar Raça
+1.3 - Cadastrar Tutor
+1.4 - Cadastrar Pet
+
+
+
+
+-- Especie.json
+codEspecie    INT
+nomeEspecie   CHAR(50)
+
+
+-- Raca.json
+codRaca    INT
+nomeRaca   CHAR(30)
+
+
+-- Tutor.json
+codTutor    INT
+NomeTutor   CHAR(50)
+
+
+-- Pet.json
+codPet           INT
+codTutor         INT
+codEspecie       INT
+codRaca          INT
+nomePet          CHAR(50)
+dataNascimento   DATETIME
+
+
+-- Veterinario.json
+codVeterinario    INT
+nomeVeterinario   CHAR(50)
+
+
+-- Atendimento.json
+codAtendimento    INT
+codVeterinario    INT
+codPet            INT
+dataAtendimento   DATETIME
+valorAtendimento  INT64_T
+
+
+-- Vacina.json
+codVacina       INT
+nomeVacina      CHAR(50)
+dataValidade    DATETIME
+valorVacina     INT64_T
+estoqueVacina   INT
+
+
+-- ProgramacaoVacina
+codProgramacao     INT
+codVacina          INT
+codEspecie         INT
+nomeProgramacao    CHAR(50)
+tempoProgramacao   INT        -- Com quantos mêses aplica a vacina
+

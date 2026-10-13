@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="VetCare.vcxproj" Id="360d8d86-3968-4f7b-b3b4-4d6831abbc3a" />
+</Solution>
