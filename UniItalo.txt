@@ -1,4 +1,5 @@
 CD \01AndreLima\Deloitte
+CD \01AndreLima\Projetos\Deloitte
 
 CD \Projetos\UniItalo
 CD \Projetos\UniItalo\ProgramacaoInternet\Projeto6
