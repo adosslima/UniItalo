@@ -1,4 +1,3 @@
-#ifndef TELA_H
 #define TELA_H
 
 void telaLimpar(void);
@@ -13,5 +12,3 @@ void telaDesenharBox(
     int largura,
     int altura
 );
-
-#endif
