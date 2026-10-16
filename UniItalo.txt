@@ -3,6 +3,7 @@ CD \01AndreLima\Projetos\Deloitte
 
 CD \Projetos\UniItalo
 CD \Projetos\UniItalo\ProgramacaoInternet\Projeto6
+CD \Projetos\UniItalo\ProgramacaoLinguagem\ProjetoSemestral\VetCare
 
 
 

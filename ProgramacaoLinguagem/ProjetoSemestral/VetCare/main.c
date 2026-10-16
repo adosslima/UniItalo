@@ -48,13 +48,6 @@ void menuCadastros(void)
             break;
         }
 
-        if (opcao != 0)
-        {
-            telaEscrever(5, 17, "Pressione ENTER...");
-            getchar();
-            getchar();
-        }
-
     } while (opcao != 0);
 }
 
@@ -92,11 +85,7 @@ int main(void)
             break;
 
         default:
-            telaEscrever(5, 18,
-                         "Funcionalidade nao implementada.");
-
-            getchar();
-            getchar();
+            telaEscrever(5, 18, "Funcionalidade nao implementada.");
             break;
         }
 

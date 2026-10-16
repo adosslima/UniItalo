@@ -2,5 +2,13 @@
     {
         "codEspecie": 1,
         "nomeEspecie": "Gato"
+    },
+    {
+        "codEspecie": 2,
+        "nomeEspecie": "Cachorro"
+    },
+    {
+        "codEspecie": 3,
+        "nomeEspecie": "Reptil"
     }
 ]

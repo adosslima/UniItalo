@@ -1,29 +1,13 @@
-
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 #include "especie.h"
+#include "tela.h"
 
 #define ARQUIVO_ESPECIES "Especie.json"
 
 static Especie especies[MAX_ESPECIES];
 static int totalEspecies = 0;
 static int proximoCodigo = 1;
-
-static void limparEntrada(void)
-{
-    int c;
-
-    while ((c = getchar()) != '\n' && c != EOF)
-    {
-    }
-}
-
-static void pausar(void)
-{
-    printf("\nPressione ENTER para continuar...");
-    getchar();
-}
 
 static int lerOpcao(void)
 {
@@ -42,7 +26,7 @@ static int lerOpcao(void)
 
 static void salvarEspecies(void)
 {
-    FILE* arquivo = fopen(ARQUIVO_ESPECIES, "w");
+    FILE *arquivo = fopen(ARQUIVO_ESPECIES, "w");
 
     if (arquivo == NULL)
     {
@@ -55,13 +39,13 @@ static void salvarEspecies(void)
     for (int i = 0; i < totalEspecies; i++)
     {
         fprintf(arquivo,
-            "    {\n"
-            "        \"codEspecie\": %d,\n"
-            "        \"nomeEspecie\": \"%s\"\n"
-            "    }%s\n",
-            especies[i].codEspecie,
-            especies[i].nomeEspecie,
-            i < totalEspecies - 1 ? "," : "");
+                "    {\n"
+                "        \"codEspecie\": %d,\n"
+                "        \"nomeEspecie\": \"%s\"\n"
+                "    }%s\n",
+                especies[i].codEspecie,
+                especies[i].nomeEspecie,
+                i < totalEspecies - 1 ? "," : "");
     }
 
     fprintf(arquivo, "]\n");
@@ -70,7 +54,7 @@ static void salvarEspecies(void)
 
 static void carregarEspecies(void)
 {
-    FILE* arquivo = fopen(ARQUIVO_ESPECIES, "r");
+    FILE *arquivo = fopen(ARQUIVO_ESPECIES, "r");
 
     totalEspecies = 0;
     proximoCodigo = 1;
@@ -79,19 +63,18 @@ static void carregarEspecies(void)
         return;
 
     char linha[200];
-    Especie especie = { 0 };
+    Especie especie = {0};
 
     while (fgets(linha, sizeof(linha), arquivo) != NULL)
     {
         if (strstr(linha, "\"codEspecie\"") != NULL)
         {
-            sscanf(linha, " \"codEspecie\": %d",
-                &especie.codEspecie);
+            sscanf(linha, " \"codEspecie\": %d", &especie.codEspecie);
         }
 
         if (strstr(linha, "\"nomeEspecie\"") != NULL)
         {
-            char* inicio = strchr(linha, ':');
+            char *inicio = strchr(linha, ':');
 
             if (inicio != NULL)
             {
@@ -101,19 +84,13 @@ static void carregarEspecies(void)
                 {
                     inicio++;
 
-                    char* fim = strchr(inicio, '"');
+                    char *fim = strchr(inicio, '"');
 
                     if (fim != NULL)
                     {
                         *fim = '\0';
-
-                        strncpy(especie.nomeEspecie,
-                            inicio,
-                            sizeof(especie.nomeEspecie) - 1);
-
-                        especie.nomeEspecie[
-                            sizeof(especie.nomeEspecie) - 1
-                        ] = '\0';
+                        strncpy(especie.nomeEspecie, inicio, sizeof(especie.nomeEspecie) - 1);
+                        especie.nomeEspecie[sizeof(especie.nomeEspecie) - 1] = '\0';
                     }
                 }
             }
@@ -126,7 +103,7 @@ static void carregarEspecies(void)
                     proximoCodigo = especie.codEspecie + 1;
             }
 
-            especie = (Especie){ 0 };
+            especie = (Especie){0};
         }
     }
 
@@ -152,20 +129,21 @@ static void incluirEspecie(void)
         return;
     }
 
-    Especie nova = { 0 };
+    Especie nova = {0};
 
     nova.codEspecie = proximoCodigo;
 
-    printf("\nCodigo: %d\n", nova.codEspecie);
-    printf("Nome da especie: ");
+    telaLimpar();
 
-    if (fgets(nova.nomeEspecie,
-        sizeof(nova.nomeEspecie), stdin) == NULL)
-        return;
+    telaDesenharBox(2, 1, 70, 20);
 
-    nova.nomeEspecie[
-        strcspn(nova.nomeEspecie, "\n")
-    ] = '\0';
+    telaEscrever(5, 3, "VETCARE - CADASTRO DE ESPECIES - Inclusão");
+
+    telaEscrever(5, 5, "Código da Especie: ");
+    printf("%d",nova.codEspecie);
+
+    telaEscrever(5, 6, "Nome da Especie: ");
+    scanf("%s", nova.nomeEspecie);
 
     if (strlen(nova.nomeEspecie) == 0)
     {
@@ -189,8 +167,8 @@ static void listarEspecies(void)
     for (int i = 0; i < totalEspecies; i++)
     {
         printf("%-8d %s\n",
-            especies[i].codEspecie,
-            especies[i].nomeEspecie);
+               especies[i].codEspecie,
+               especies[i].nomeEspecie);
     }
 
     printf("\nTotal: %d\n", totalEspecies);
@@ -246,7 +224,7 @@ static void excluirEspecie(void)
     }
 
     printf("Excluir %s? (S/N): ",
-        especies[indice].nomeEspecie);
+           especies[indice].nomeEspecie);
 
     char resposta[10];
 
@@ -274,44 +252,46 @@ void menuEspecies(void)
 
     do
     {
-        printf("\n===== CADASTRO DE ESPECIES =====\n\n");
-        printf("1 - Incluir\n");
-        printf("2 - Listar\n");
-        printf("3 - Alterar\n");
-        printf("4 - Excluir\n");
-        printf("0 - Voltar\n");
+        telaLimpar();
 
-        printf("\nOpcao: ");
-        opcao = lerOpcao();
+        telaDesenharBox(2, 1, 70, 20);
+
+        telaEscrever(5, 3, "VETCARE - CADASTRO DE ESPECIES");
+
+        telaEscrever(5, 5, "1 - Incluir Especie");
+        telaEscrever(5, 6, "2 - Listar Especies");
+        telaEscrever(5, 7, "3 - Alterar Especie");
+        telaEscrever(5, 8, "4 - Excluir Especie");
+        telaEscrever(5, 10, "0 - Voltar");
+
+        telaEscrever(5, 13, "Escolha uma opcao: ");
+        scanf("%d", &opcao);
 
         switch (opcao)
         {
-            case 1:
-                incluirEspecie();
-                break;
+        case 1:
+            incluirEspecie();
+            break;
 
-            case 2:
-                listarEspecies();
-                break;
+        case 2:
+            listarEspecies();
+            break;
 
-            case 3:
-                alterarEspecie();
-                break;
+        case 3:
+            alterarEspecie();
+            break;
 
-            case 4:
-                excluirEspecie();
-                break;
+        case 4:
+            excluirEspecie();
+            break;
 
-            case 0:
-                break;
+        case 0:
+            break;
 
-            default:
-                printf("\nOpcao invalida!\n");
-                break;
+        default:
+            telaEscrever(5, 15, "Opcao invalida!");
+            break;
         }
-
-        if (opcao != 0)
-            pausar();
 
     } while (opcao != 0);
 }
