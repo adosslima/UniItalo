@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../Styles/dashboard.css">
+    <title>Dashboard|Monitoramento</title>
+</head>
+<body>
+    <header>
+        <h1>Painel de Monitoramento do Sistema</h1>
+        <p>Leitura automática do arquivo .JSON gerado na linguagem C</p>
+    </header>
+
+    <main class="painel">
+        <section class="card">
+            <h2>Memória RAM</h2>
+            <p><strong>Total:</strong> <span id="ramTotal">Carregando...</span>MB</p>
+            <p><strong>Usada:</strong> <span id="ramUsada">Carregando...</span>MB</p>
+            <p><strong>Livre:</strong> <span id="ramLivre">Carregando...</span>MB</p>
+        </section>
+
+        <section class="card">
+            <h2>Disco Rígido</h2>
+            <p><strong>Total:</strong> <span id="discoTotal">Carregando...</span>MB</p>
+            <p><strong>Usado:</strong> <span id="discoUsado">Carregando...</span>MB</p>
+            <p><strong>Livre:</strong> <span id="discoLivre">Carregando...</span>MB</p>
+        </section>
+
+        <section class="card">
+            <h2>CPU</h2>
+            <p><strong>Temperatura:</strong> <span id="temperatura">Carregando...</span>°C</p>
+        </section>
+
+        <section class="card">
+            <h2>Processos e Threads</h2>
+            <p><strong>Processos:</strong> <span id="processos">Carregando...</span> processos</p>
+            <p><strong>Threads:</strong> <span id="threads">Carregando...</span> threads</p>
+        </section>
+
+        <section class="card">
+            <h2>Última Atualização</h2>
+            <p><span id="timestamp">Carregando...</span></p>
+        </section>
+    </main>
+    <script src="../Scripts/dashboard.js"></script>
+</body>
+</html>

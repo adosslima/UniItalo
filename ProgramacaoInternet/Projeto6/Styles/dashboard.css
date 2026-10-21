@@ -1,0 +1,56 @@
+/*FOLHA DE ESTILOS DO DASHBOARD*/
+
+/*GLOBAL*/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*CORPO*/
+body{
+    font-family: Arial, sans-serif;
+    background: #1d3557;
+;
+    color: #222;
+    padding: 20px;
+}
+
+/*CABEÇALHO*/
+header{
+    text-align: center;
+    margin-bottom: 30px;
+}
+header h1{ /*título*/
+    margin-bottom: 10px;
+    color: #ffffff;
+}
+header p{ /*parágrafo*/
+    color: #ffffff;
+}
+
+/*PRINCIPAL*/
+.painel{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /*cria um layout de grade e coloca o máximo de colunas possível e expande para preencher todo espaço*/
+    gap: 20px;
+}
+.card{ /*cartão*/
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08); /*adiciona efeitos de sombra ao redor da borda (caixa) de um elemento: move a sombra 0px para direita, 3px para baixo, aplica desfoque de 10px e usa uma cor preta com 8% de transparência*/
+    transition: transform 0.2s ease; /*cria uma animação suave de 0,2 segundos com transição lenta*/
+}
+.card:hover{ /*minizoom no cartão*/
+    transform: scale(1.02); /*aumenta ligeiramente o tamanho de um elemento em 2%*/
+}
+.card h2{ /*título do cartão*/
+    margin-bottom: 15px;
+    color: #457b9d;
+    text-align: center;
+}
+.card p{ /*texto do cartão*/
+    margin-bottom: 10px;
+    font-size: 16px;
+}
