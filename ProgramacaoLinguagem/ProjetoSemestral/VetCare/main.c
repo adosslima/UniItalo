@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include "tela.h"
 #include "especie.h"
+#include "raca.h"
+#include "tutor.h"
+
 
 void menuCadastros(void)
 {
@@ -29,11 +32,11 @@ void menuCadastros(void)
             break;
 
         case 2:
-            telaEscrever(5, 15, "Cadastrar Raca");
+            menuRacas();
             break;
 
         case 3:
-            telaEscrever(5, 15, "Cadastrar Tutor");
+            menuTutores();
             break;
 
         case 4:

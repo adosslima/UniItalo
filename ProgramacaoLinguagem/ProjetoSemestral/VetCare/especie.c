@@ -20,7 +20,8 @@ static void salvarEspecies(void)
 
     if (arquivo == NULL)
     {
-        printf("\nErro ao abrir o arquivo JSON!\n");
+        telaEscrever(5, 18, "Erro ao abrir o arquivo JSON!");
+        getchar();
         return;
     }
 
@@ -294,7 +295,7 @@ void menuEspecies(void)
 
         telaDesenharBox(2, 1, 70, 20);
 
-        telaEscrever(5, 3, "VETCARE - CADASTRO DE ESPECIES");
+        telaEscrever(5, 3, "VETCARE - MANUTENCAO DE ESPECIES");
 
         telaEscrever(5, 5, "1 - Incluir");
         telaEscrever(5, 6, "2 - Alterar");
