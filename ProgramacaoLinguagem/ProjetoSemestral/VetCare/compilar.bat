@@ -1,6 +1,6 @@
 @echo off
 
-gcc -Wall -Wextra *.c -o VetCare.exe
+gcc -Wall -Wextra *.c -o C:\VetCare\Aplicativo\VetCare.exe
 
 if errorlevel 1 (
     echo.

@@ -3,27 +3,17 @@
 #include "especie.h"
 #include "tela.h"
 
-#define ARQUIVO_ESPECIES "Especie.json"
+#define ARQUIVO_ESPECIES "C:\\VetCare\\Dados\\Especie.json"
 
 static Especie especies[MAX_ESPECIES];
 static int totalEspecies = 0;
 static int proximoCodigo = 1;
 
-static int lerOpcao(void)
-{
-    char linha[30];
-    int opcao;
-    char extra;
-
-    if (fgets(linha, sizeof(linha), stdin) == NULL)
-        return -1;
-
-    if (sscanf(linha, " %d %c", &opcao, &extra) != 1)
-        return -1;
-
-    return opcao;
-}
-
+/*
+---------------------------------
+ Função SALVAR
+---------------------------------
+*/
 static void salvarEspecies(void)
 {
     FILE *arquivo = fopen(ARQUIVO_ESPECIES, "w");
@@ -52,6 +42,183 @@ static void salvarEspecies(void)
     fclose(arquivo);
 }
 
+/*
+---------------------------------
+Função Listar
+---------------------------------
+*/
+static void listarEspecies(void)
+{
+    char codigo[10];
+
+    telaLimpar();
+    telaDesenharBox(2, 1, 70, 20);
+    telaEscrever(5, 3, "VETCARE - MANUTENCAO DE ESPECIES - Listagem");
+
+    telaEscrever(5, 6, "CODIGO");
+    telaEscrever(20, 6, "ESPECIE");
+    telaEscrever(5, 7, "-------------------------------");
+
+    for (int i = 0; i < totalEspecies; i++)
+    {
+        snprintf(codigo, sizeof(codigo), "%d", especies[i].codEspecie);
+        
+        telaEscrever(5, 8 + i, codigo);
+        telaEscrever(20, 8 + i, especies[i].nomeEspecie);
+    }
+
+    telaEscrever(5,19,"Total: ");
+    printf("%d", totalEspecies);
+
+    getchar();
+    getchar();
+}
+
+/*
+---------------------------------
+Função Buscar Indice
+---------------------------------
+*/
+static int buscarIndice(int codigo)
+{
+    for (int i = 0; i < totalEspecies; i++)
+    {
+        if (especies[i].codEspecie == codigo)
+            return i;
+    }
+    return -1;
+}
+
+/*
+---------------------------------
+Função Excluir
+---------------------------------
+*/
+static void excluirEspecie(void)
+{
+    telaLimpar();
+    telaDesenharBox(2, 1, 70, 20);
+    telaEscrever(5, 3, "VETCARE - MANUTENCAO DE ESPECIES - Exclusao");
+
+    int codigo = 0;
+    telaEscrever(5, 5, "Codigo da Especie: ");
+    scanf("%d", &codigo);
+
+    int indice = buscarIndice(codigo);
+
+    if (indice == -1)
+    {
+        telaEscrever(5, 18, "Especie nao encontrada!");
+        getchar();
+        getchar();
+        return;
+    }
+
+    telaEscrever(5, 17, "Confirma ");
+    printf("excluir %s? (S/N): ", especies[indice].nomeEspecie);
+
+    char resposta[1];
+    scanf("%s", resposta);
+
+    if (resposta[0] != 'S' && resposta[0] != 's')
+        return;
+
+    for (int i = indice; i < totalEspecies - 1; i++)
+        especies[i] = especies[i + 1];
+
+    totalEspecies--;
+
+    salvarEspecies();
+
+    telaEscrever(5, 18, "Especie excluida!");
+    getchar();
+    getchar();
+}
+
+/*
+---------------------------------
+Função Alterar
+---------------------------------
+*/
+static void alterarEspecie(void)
+{
+    telaLimpar();
+    telaDesenharBox(2, 1, 70, 20);
+    telaEscrever(5, 3, "VETCARE - MANUTENCAO DE ESPECIES - Alteracao");
+
+    int codigo = 0;
+    telaEscrever(5, 5, "Codigo da Especie: ");
+    scanf("%d", &codigo);
+
+    int indice = buscarIndice(codigo);
+
+    if (indice == -1)
+    {
+        telaEscrever(5, 18, "Especie nao encontrada!");
+        getchar();
+        return;
+    }
+
+    telaEscrever(5, 6, "Nome atual: ");
+    printf("%s", especies[indice].nomeEspecie);
+
+    char novoNome[50];
+    telaEscrever(5, 7, "Novo nome: ");
+    scanf(" %49[^\n]", novoNome);
+
+    strcpy(especies[indice].nomeEspecie, novoNome);
+    salvarEspecies();
+
+    telaEscrever(5, 18, "Especie alterada!");
+    getchar();
+    getchar();
+}
+
+/*
+---------------------------------
+ Função INCLUIR
+---------------------------------
+*/
+static void incluirEspecie(void)
+{
+    telaLimpar();
+    telaDesenharBox(2, 1, 70, 20);
+    telaEscrever(5, 3, "VETCARE - MANUTENCAO DE ESPECIES - Inclusao");
+
+    if (totalEspecies >= MAX_ESPECIES)
+    {
+        telaEscrever(5, 18, "Limite de especies atingido!");
+        getchar();
+        return;
+    }
+
+    Especie nova = {0};
+    nova.codEspecie = proximoCodigo;
+
+    telaEscrever(5, 5, "Codigo da Especie: ");
+    printf("%d", nova.codEspecie);
+
+    char nome[50];
+    telaEscrever(5, 6, "Nome da Especie: ");
+    scanf(" %49[^\n]", nome);
+
+    strcpy(nova.nomeEspecie, nome);
+
+    especies[totalEspecies++] = nova;
+    proximoCodigo++;
+
+    salvarEspecies();
+
+    telaEscrever(5, 18, "Especie cadastrada!");
+    getchar();
+    getchar();
+}
+
+/*
+---------------------------------
+Função Carregar
+---------------------------------
+*/
 static void carregarEspecies(void)
 {
     FILE *arquivo = fopen(ARQUIVO_ESPECIES, "r");
@@ -110,140 +277,11 @@ static void carregarEspecies(void)
     fclose(arquivo);
 }
 
-static int buscarIndice(int codigo)
-{
-    for (int i = 0; i < totalEspecies; i++)
-    {
-        if (especies[i].codEspecie == codigo)
-            return i;
-    }
-
-    return -1;
-}
-
-static void incluirEspecie(void)
-{
-    if (totalEspecies >= MAX_ESPECIES)
-    {
-        printf("\nLimite de especies atingido!\n");
-        return;
-    }
-
-    Especie nova = {0};
-
-    nova.codEspecie = proximoCodigo;
-
-    telaLimpar();
-
-    telaDesenharBox(2, 1, 70, 20);
-
-    telaEscrever(5, 3, "VETCARE - CADASTRO DE ESPECIES - Inclusão");
-
-    telaEscrever(5, 5, "Código da Especie: ");
-    printf("%d",nova.codEspecie);
-
-    telaEscrever(5, 6, "Nome da Especie: ");
-    scanf("%s", nova.nomeEspecie);
-
-    if (strlen(nova.nomeEspecie) == 0)
-    {
-        printf("\nNome nao pode ser vazio!\n");
-        return;
-    }
-
-    especies[totalEspecies++] = nova;
-    proximoCodigo++;
-
-    salvarEspecies();
-
-    printf("\nEspecie cadastrada!\n");
-}
-
-static void listarEspecies(void)
-{
-    printf("\nCODIGO   ESPECIE\n");
-    printf("-------------------------------\n");
-
-    for (int i = 0; i < totalEspecies; i++)
-    {
-        printf("%-8d %s\n",
-               especies[i].codEspecie,
-               especies[i].nomeEspecie);
-    }
-
-    printf("\nTotal: %d\n", totalEspecies);
-}
-
-static void alterarEspecie(void)
-{
-    printf("\nCodigo da especie: ");
-    int codigo = lerOpcao();
-
-    int indice = buscarIndice(codigo);
-
-    if (indice == -1)
-    {
-        printf("\nEspecie nao encontrada!\n");
-        return;
-    }
-
-    printf("Nome atual: %s\n", especies[indice].nomeEspecie);
-    printf("Novo nome: ");
-
-    char novoNome[50];
-
-    if (fgets(novoNome, sizeof(novoNome), stdin) == NULL)
-        return;
-
-    novoNome[strcspn(novoNome, "\n")] = '\0';
-
-    if (strlen(novoNome) == 0)
-    {
-        printf("\nNome nao pode ser vazio!\n");
-        return;
-    }
-
-    strcpy(especies[indice].nomeEspecie, novoNome);
-
-    salvarEspecies();
-
-    printf("\nEspecie alterada!\n");
-}
-
-static void excluirEspecie(void)
-{
-    printf("\nCodigo da especie: ");
-    int codigo = lerOpcao();
-
-    int indice = buscarIndice(codigo);
-
-    if (indice == -1)
-    {
-        printf("\nEspecie nao encontrada!\n");
-        return;
-    }
-
-    printf("Excluir %s? (S/N): ",
-           especies[indice].nomeEspecie);
-
-    char resposta[10];
-
-    if (fgets(resposta, sizeof(resposta), stdin) == NULL)
-        return;
-
-    if (resposta[0] != 'S' && resposta[0] != 's')
-        return;
-
-    for (int i = indice; i < totalEspecies - 1; i++)
-        especies[i] = especies[i + 1];
-
-    totalEspecies--;
-
-    salvarEspecies();
-
-    printf("\nEspecie excluida!\n");
-}
-
+/*
+---------------------------------
+ Função Menu
+---------------------------------
+*/
 void menuEspecies(void)
 {
     carregarEspecies();
@@ -258,13 +296,13 @@ void menuEspecies(void)
 
         telaEscrever(5, 3, "VETCARE - CADASTRO DE ESPECIES");
 
-        telaEscrever(5, 5, "1 - Incluir Especie");
-        telaEscrever(5, 6, "2 - Listar Especies");
-        telaEscrever(5, 7, "3 - Alterar Especie");
-        telaEscrever(5, 8, "4 - Excluir Especie");
+        telaEscrever(5, 5, "1 - Incluir");
+        telaEscrever(5, 6, "2 - Alterar");
+        telaEscrever(5, 7, "3 - Excluir");
+        telaEscrever(5, 8, "4 - Listar");
         telaEscrever(5, 10, "0 - Voltar");
 
-        telaEscrever(5, 13, "Escolha uma opcao: ");
+        telaEscrever(5, 16, "Escolha uma opcao: ");
         scanf("%d", &opcao);
 
         switch (opcao)
@@ -274,22 +312,24 @@ void menuEspecies(void)
             break;
 
         case 2:
-            listarEspecies();
-            break;
-
-        case 3:
             alterarEspecie();
             break;
 
-        case 4:
+        case 3:
             excluirEspecie();
+            break;
+
+        case 4:
+            listarEspecies();
             break;
 
         case 0:
             break;
 
         default:
-            telaEscrever(5, 15, "Opcao invalida!");
+            telaEscrever(5, 18, "Opcao invalida!");
+            getchar();
+            getchar();
             break;
         }
 
