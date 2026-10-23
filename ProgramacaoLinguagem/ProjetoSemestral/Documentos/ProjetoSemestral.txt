@@ -34,25 +34,25 @@ codTutor    INT
 NomeTutor   CHAR(50)
 
 
+-- Veterinario.json
+codVeterinario    INT
+nomeVeterinario   CHAR(50)
+
+
 -- Pet.json
 codPet           INT
 codTutor         INT
 codEspecie       INT
 codRaca          INT
 nomePet          CHAR(50)
-dataNascimento   DATETIME
-
-
--- Veterinario.json
-codVeterinario    INT
-nomeVeterinario   CHAR(50)
+dataNascimento   CHAR(10
 
 
 -- Atendimento.json
 codAtendimento    INT
 codVeterinario    INT
 codPet            INT
-dataAtendimento   DATETIME
+dataAtendimento   CHAR(10)
 valorAtendimento  INT64_T
 
 

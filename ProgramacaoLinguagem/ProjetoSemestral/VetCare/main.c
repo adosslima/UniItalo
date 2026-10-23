@@ -3,7 +3,8 @@
 #include "especie.h"
 #include "raca.h"
 #include "tutor.h"
-
+#include "veterinario.h"
+#include "pet.h"
 
 void menuCadastros(void)
 {
@@ -19,8 +20,9 @@ void menuCadastros(void)
         telaEscrever(5, 5, "1 - Cadastrar Especie");
         telaEscrever(5, 6, "2 - Cadastrar Raca");
         telaEscrever(5, 7, "3 - Cadastrar Tutor");
-        telaEscrever(5, 8, "4 - Cadastrar Pet");
-        telaEscrever(5, 10, "0 - Voltar");
+        telaEscrever(5, 8, "4 - Cadastrar Veterinario");
+        telaEscrever(5, 9, "5 - Cadastrar Pet");
+        telaEscrever(5, 11, "0 - Voltar");
 
         telaEscrever(5, 13, "Escolha uma opcao: ");
         scanf("%d", &opcao);
@@ -40,14 +42,20 @@ void menuCadastros(void)
             break;
 
         case 4:
-            telaEscrever(5, 15, "Cadastrar Pet");
+            menuVeterinarios();
+            break;
+
+        case 5:
+            menuPets();
             break;
 
         case 0:
             break;
 
         default:
-            telaEscrever(5, 15, "Opcao invalida!");
+            telaEscrever(5, 18, "Opcao invalida!");
+            getchar();
+            getchar();
             break;
         }
 
@@ -89,6 +97,8 @@ int main(void)
 
         default:
             telaEscrever(5, 18, "Funcionalidade nao implementada.");
+            getchar();
+            getchar();
             break;
         }
 
