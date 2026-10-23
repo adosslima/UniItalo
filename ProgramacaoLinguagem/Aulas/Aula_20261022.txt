@@ -1,0 +1,11 @@
+Classe
+   |
+Objeto = Métodos e Atributos
+
+Granularidade - Objetos pequenos
+
+
+Abstração      - Só usar o que é necessário.
+Herança        - Alto Acoplamneto.
+Encapsulamento - Visibilidade   - + Público, # Protegido, - Privado => Setters / Getters.
+Polimorfismo   - Sobrescrita, Sobrecarga de Argumentos - Métodos.
