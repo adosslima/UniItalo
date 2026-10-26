@@ -71,3 +71,36 @@ codEspecie         INT
 nomeProgramacao    CHAR(50)
 tempoProgramacao   INT        -- Com quantos mêses aplica a vacina
 
+
+
+
+
+Data JSon
+2026-10-26
+
+Data System
+26/10/2026
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
