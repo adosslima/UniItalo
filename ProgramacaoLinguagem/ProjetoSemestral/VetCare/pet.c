@@ -36,7 +36,7 @@ static void salvarPets(void)
                 "        \"codTutor\": %d,\n"
                 "        \"codEspecie\": %d,\n"
                 "        \"codRaca\": %d,\n"
-                "        \"nomePet\": \"%s\"\n"
+                "        \"nomePet\": \"%s\",\n"
                 "        \"dataNascimento\": \"%s\"\n"
                 "    }%s\n",
                 pets[i].codPet,
@@ -189,12 +189,12 @@ static void incluirPet(void)
 
     do
     {
-        telaEscrever(5, 7, "Data de nascimento (DD/MM/AAAA): ");
+        telaEscrever(5, 10, "Data de nascimento (AAAA-MM-DD): ");
 
-        if (scanf("%d/%d/%d",
-                  &nascimento.dia,
+        if (scanf("%d-%d-%d",
+                  &nascimento.ano,
                   &nascimento.mes,
-                  &nascimento.ano) != 3)
+                  &nascimento.dia) != 3)
         {
             telaEscrever(5, 19, "Formato de data invalido!");
             getchar();
@@ -292,8 +292,6 @@ static void carregarPets(void)
 
         if (strstr(linha, "\"dataNascimento\"") != NULL)
         {
-            char dataNascimento[10];
-
             char *inicio = strchr(linha, ':');
 
             if (inicio != NULL)
@@ -309,18 +307,8 @@ static void carregarPets(void)
                     if (fim != NULL)
                     {
                         *fim = '\0';
-                        strncpy(dataNascimento, inicio, sizeof(pet.nomePet) - 1);
-                        dataNascimento[sizeof(dataNascimento) - 1] = '\0';
-
-                        /*
-                        snprintf(
-                            pet.dataNascimento,
-                            sizeof(pet.dataNascimento),
-                            "%02d/%02d-%04d",
-                            nascimento.ano,
-                            nascimento.mes,
-                            nascimento.dia);
-                        */
+                        strncpy(pet.dataNascimento, inicio, sizeof(pet.dataNascimento) - 1);
+                        pet.dataNascimento[sizeof(pet.dataNascimento) - 1] = '\0';
                     }
                 }
             }
