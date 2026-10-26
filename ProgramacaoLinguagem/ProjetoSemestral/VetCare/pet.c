@@ -312,17 +312,17 @@ static void carregarPets(void)
                     }
                 }
             }
+            
+            if (totalPets < MAX_PETS)
+            {
+                pets[totalPets++] = pet;
+
+                if (pet.codPet >= proximoCodigo)
+                    proximoCodigo = pet.codPet + 1;
+            }
+
+            pet = (Pet){0};
         }
-
-        if (totalPets < MAX_PETS)
-        {
-            pets[totalPets++] = pet;
-
-            if (pet.codPet >= proximoCodigo)
-                proximoCodigo = pet.codPet + 1;
-        }
-
-        pet = (Pet){0};
     }
 
     fclose(arquivo);
