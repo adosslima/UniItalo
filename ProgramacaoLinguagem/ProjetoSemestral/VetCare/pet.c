@@ -3,6 +3,9 @@
 #include "data.h"
 #include "pet.h"
 #include "tela.h"
+#include "tutor.h"
+#include "especie.h"
+#include "raca.h"
 
 #define ARQUIVO_PETS "C:\\VetCare\\Dados\\Pet.json"
 
@@ -50,38 +53,6 @@ static void salvarPets(void)
 
     fprintf(arquivo, "]\n");
     fclose(arquivo);
-}
-
-/*
----------------------------------
-Função Listar
----------------------------------
-*/
-static void listarPets(void)
-{
-    char codigo[10];
-
-    telaLimpar();
-    telaDesenharBox(2, 1, 70, 20);
-    telaEscrever(5, 3, "VETCARE - MANUTENCAO DE PETS - Listagem");
-
-    telaEscrever(5, 6, "CODIGO");
-    telaEscrever(20, 6, "PET");
-    telaEscrever(5, 7, "-------------------------------");
-
-    for (int i = 0; i < totalPets; i++)
-    {
-        snprintf(codigo, sizeof(codigo), "%d", pets[i].codPet);
-
-        telaEscrever(5, 8 + i, codigo);
-        telaEscrever(20, 8 + i, pets[i].nomePet);
-    }
-
-    telaEscrever(5, 19, "Total: ");
-    printf("%d", totalPets);
-
-    getchar();
-    getchar();
 }
 
 /*
@@ -169,14 +140,37 @@ static void incluirPet(void)
     telaEscrever(5, 5, "Codigo do Pet: ");
     printf("%d", nova.codPet);
 
-    telaEscrever(5, 6, "Codigo do Tutor: ");
-    scanf("%d", &nova.codTutor);
+    char nomeValido[50] = {0};
 
-    telaEscrever(5, 7, "Codigo do Especia: ");
-    scanf("%d", &nova.codEspecie);
+    do
+    {
+        nova.codTutor = 0;
 
-    telaEscrever(5, 8, "Codigo do Raca: ");
-    scanf("%d", &nova.codRaca);
+        telaEscrever(5, 6, "Codigo do Tutor: ");
+        scanf("%d", &nova.codTutor);
+    } while (validarTutor(nova.codTutor, nomeValido) == 0);
+
+    telaEscrever(30, 6, nomeValido);
+
+    do
+    {
+        nova.codEspecie = 0;
+
+        telaEscrever(5, 7, "Codigo da Especie: ");
+        scanf("%d", &nova.codEspecie);
+    } while (validarEspecie(nova.codEspecie, nomeValido) == 0);
+
+    telaEscrever(30, 7, nomeValido);
+
+    do
+    {
+        nova.codRaca = 0;
+
+        telaEscrever(5, 8, "Codigo do Raca: ");
+        scanf("%d", &nova.codRaca);
+    } while (validarRaca(nova.codRaca, nomeValido) == 0);
+
+    telaEscrever(30, 8, nomeValido);
 
     char nome[50];
     telaEscrever(5, 9, "Nome do Pet: ");
@@ -312,7 +306,7 @@ static void carregarPets(void)
                     }
                 }
             }
-            
+
             if (totalPets < MAX_PETS)
             {
                 pets[totalPets++] = pet;
@@ -326,6 +320,124 @@ static void carregarPets(void)
     }
 
     fclose(arquivo);
+}
+
+/*
+---------------------------------
+Função Listar
+---------------------------------
+*/
+void listarPets(void)
+{
+    carregarPets();
+
+    char codigo[10];
+
+    int linha = 2;
+    int largura = 92;
+
+    telaLimpar();
+
+    telaPosicionarCursor(0, linha);
+    printf("+");
+
+    for (int i = 0; i < largura - 2; i++)
+        printf("=");
+
+    printf("+");
+
+    linha++;
+
+    telaEscrever(0, linha, "|");
+    telaEscrever(5, linha, "VETCARE - MANUTENCAO DE PETS - Listagem");
+    telaEscrever(largura - 1, linha, "|");
+
+    linha++;
+
+    telaPosicionarCursor(0, linha);
+    printf("+");
+
+    for (int i = 0; i < largura - 2; i++)
+        printf("=");
+
+    printf("+");
+
+    linha++;
+
+    telaEscrever(0, linha, "|");
+    telaEscrever(1, linha, "CODIGO");
+    telaEscrever(8, linha, "NOME");
+    telaEscrever(29, linha, "ESPECIE");
+    telaEscrever(50, linha, "RACA");
+    telaEscrever(71, linha, "TUTOR");
+    telaEscrever(largura - 1, linha, "|");
+
+    linha++;
+
+    telaPosicionarCursor(0, linha);
+    printf("|");
+
+    for (int i = 0; i < largura - 2; i++)
+        printf("-");
+
+    printf("|");
+
+    linha++;
+
+    char nomeValido[50];
+    char nome[50];
+
+    for (int i = 0; i < totalPets; i++)
+    {
+        telaEscrever(0, linha, "|");
+        snprintf(codigo, sizeof(codigo), "%d", pets[i].codPet);
+
+        telaEscrever(1, linha, codigo);
+        telaEscrever(8, linha, pets[i].nomePet);
+
+        validarEspecie(pets[i].codEspecie, nomeValido);
+        strncpy(nome, nomeValido, 20);
+        telaEscrever(29, linha, nome);
+
+        validarRaca(pets[i].codRaca, nomeValido);
+        strncpy(nome, nomeValido, 20);
+        telaEscrever(50, linha, nome);
+
+        validarTutor(pets[i].codTutor, nomeValido);
+        strncpy(nome, nomeValido, 20);
+        telaEscrever(71, linha, nome);
+
+        telaEscrever(largura - 1, linha, "|");
+        linha++;
+    }
+
+    telaPosicionarCursor(0, linha);
+    printf("|");
+
+    for (int i = 0; i < largura - 2; i++)
+        printf("-");
+
+    printf("|");
+
+    linha++;
+
+    telaEscrever(0, linha, "|");
+    telaEscrever(1, linha, "Total: ");
+    printf("%d", totalPets);
+    telaEscrever(largura - 1, linha, "|");
+
+    linha++;
+
+    telaPosicionarCursor(0, linha);
+    printf("+");
+
+    for (int i = 0; i < largura - 2; i++)
+        printf("=");
+
+    printf("+");
+
+    getchar();
+    getchar();
 }
 
 /*

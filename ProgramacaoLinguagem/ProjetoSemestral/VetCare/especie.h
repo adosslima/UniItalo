@@ -9,3 +9,4 @@ typedef struct
 } Especie;
 
 void menuEspecies(void);
+int validarEspecie(int codigo, char *nome);

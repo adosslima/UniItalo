@@ -52,24 +52,90 @@ static void listarTutores(void)
 {
     char codigo[10];
 
-    telaLimpar();
-    telaDesenharBox(2, 1, 70, 20);
-    telaEscrever(5, 3, "VETCARE - MANUTENCAO DE TUTORES - Listagem");
+    int linha = 2;
+    int largura = 70;
 
-    telaEscrever(5, 6, "CODIGO");
-    telaEscrever(20, 6, "TUTOR");
-    telaEscrever(5, 7, "-------------------------------");
+    telaLimpar();
+
+    telaPosicionarCursor(0, linha);
+    printf("+");
+
+    for (int i = 0; i < largura - 2; i++)
+        printf("=");
+
+    printf("+");
+
+    linha++;
+
+    telaEscrever(0, linha, "|");
+    telaEscrever(5, linha, "VETCARE - MANUTENCAO DE TUTORES - Listagem");
+    telaEscrever(largura - 1, linha, "|");
+
+    linha++;
+
+    telaPosicionarCursor(0, linha);
+    printf("+");
+
+    for (int i = 0; i < largura - 2; i++)
+        printf("=");
+
+    printf("+");
+
+    linha++;
+
+    telaEscrever(0, linha, "|");
+    telaEscrever(1, linha, "CODIGO");
+    telaEscrever(8, linha, "TUTOR");
+    telaEscrever(largura - 1, linha, "|");
+
+    linha++;
+
+    telaPosicionarCursor(0, linha);
+    printf("|");
+
+    for (int i = 0; i < largura - 2; i++)
+        printf("-");
+
+    printf("|");
+
+    linha++;
 
     for (int i = 0; i < totalTutores; i++)
     {
+        telaEscrever(0, linha, "|");
         snprintf(codigo, sizeof(codigo), "%d", tutores[i].codTutor);
         
-        telaEscrever(5, 8 + i, codigo);
-        telaEscrever(20, 8 + i, tutores[i].nomeTutor);
+        telaEscrever(5, linha, codigo);
+        telaEscrever(8, linha, tutores[i].nomeTutor);
+
+        telaEscrever(largura - 1, linha, "|");
+        linha++;
     }
 
-    telaEscrever(5,19,"Total: ");
+    telaPosicionarCursor(0, linha);
+    printf("|");
+
+    for (int i = 0; i < largura - 2; i++)
+        printf("-");
+
+    printf("|");
+
+    linha++;
+
+    telaEscrever(0, linha, "|");
+    telaEscrever(1,linha,"Total: ");
     printf("%d", totalTutores);
+    telaEscrever(largura - 1, linha, "|");
+
+    linha++;
+
+    telaPosicionarCursor(0, linha);
+    printf("+");
+
+    for (int i = 0; i < largura - 2; i++)
+        printf("=");
+
+    printf("+");
 
     getchar();
     getchar();
@@ -276,6 +342,28 @@ static void carregarTutores(void)
     }
 
     fclose(arquivo);
+}
+
+/*
+---------------------------------
+Função Pública Validar Tutor
+---------------------------------
+*/
+int validarTutor(int codigo, char *nome)
+{
+    carregarTutores();
+
+    int indice = buscarIndice(codigo);
+
+    if (indice == -1)
+    {
+        nome[0] = '\0';
+        return 0;
+    }
+
+    strcpy(nome, tutores[indice].nomeTutor);
+
+    return 1;
 }
 
 /*

@@ -9,3 +9,4 @@ typedef struct
 } Tutor;
 
 void menuTutores(void);
+int validarTutor(int codigo, char *nome);

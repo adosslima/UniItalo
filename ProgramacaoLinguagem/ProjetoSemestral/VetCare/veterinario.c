@@ -52,24 +52,92 @@ static void listarVeterinarios(void)
 {
     char codigo[10];
 
-    telaLimpar();
-    telaDesenharBox(2, 1, 70, 20);
-    telaEscrever(5, 3, "VETCARE - MANUTENCAO DE VETERINARIOS - Listagem");
+    int linha = 2;
+    int largura = 70;
 
-    telaEscrever(5, 6, "CODIGO");
-    telaEscrever(20, 6, "VETERINARIO");
-    telaEscrever(5, 7, "-------------------------------");
+    telaLimpar();
+
+    telaPosicionarCursor(0, linha);
+    printf("+");
+
+    for (int i = 0; i < largura - 2; i++)
+        printf("=");
+
+    printf("+");
+
+    linha++;
+
+    telaEscrever(0, linha, "|");
+    telaEscrever(5, linha, "VETCARE - MANUTENCAO DE VETERINARIOS - Listagem");
+    telaEscrever(largura - 1, linha, "|");
+
+    linha++;
+
+    telaPosicionarCursor(0, linha);
+    printf("+");
+
+    for (int i = 0; i < largura - 2; i++)
+        printf("=");
+
+    printf("+");
+
+    linha++;
+
+    telaEscrever(0, linha, "|");
+
+    telaEscrever(1, linha, "CODIGO");
+    telaEscrever(8, linha, "VETERINARIO");
+
+    telaEscrever(largura - 1, linha, "|");
+
+    linha++;
+
+    telaPosicionarCursor(0, linha);
+    printf("|");
+
+    for (int i = 0; i < largura - 2; i++)
+        printf("-");
+
+    printf("|");
+
+    linha++;
 
     for (int i = 0; i < totalVeterinarios; i++)
     {
+        telaEscrever(0, linha, "|");
         snprintf(codigo, sizeof(codigo), "%d", veterinarios[i].codVeterinario);
         
-        telaEscrever(5, 8 + i, codigo);
-        telaEscrever(20, 8 + i, veterinarios[i].nomeVeterinario);
+        telaEscrever(5, linha, codigo);
+        telaEscrever(8, linha, veterinarios[i].nomeVeterinario);
+
+        telaEscrever(largura - 1, linha, "|");
+        linha++;
     }
 
-    telaEscrever(5,19,"Total: ");
+    telaPosicionarCursor(0, linha);
+    printf("|");
+
+    for (int i = 0; i < largura - 2; i++)
+        printf("-");
+
+    printf("|");
+
+    linha++;
+
+    telaEscrever(0, linha, "|");
+    telaEscrever(1,linha,"Total: ");
     printf("%d", totalVeterinarios);
+    telaEscrever(largura - 1, linha, "|");
+
+    linha++;
+
+    telaPosicionarCursor(0, linha);
+    printf("+");
+
+    for (int i = 0; i < largura - 2; i++)
+        printf("=");
+
+    printf("+");
 
     getchar();
     getchar();

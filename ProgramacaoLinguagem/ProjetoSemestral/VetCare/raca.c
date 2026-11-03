@@ -52,24 +52,90 @@ static void listarRacas(void)
 {
     char codigo[10];
 
-    telaLimpar();
-    telaDesenharBox(2, 1, 70, 20);
-    telaEscrever(5, 3, "VETCARE - MANUTENCAO DE RACAS - Listagem");
+    int linha = 2;
+    int largura = 70;
 
-    telaEscrever(5, 6, "CODIGO");
-    telaEscrever(20, 6, "RACA");
-    telaEscrever(5, 7, "-------------------------------");
+    telaLimpar();
+
+    telaPosicionarCursor(0, linha);
+    printf("+");
+
+    for (int i = 0; i < largura - 2; i++)
+        printf("=");
+
+    printf("+");
+
+    linha++;
+
+    telaEscrever(0, linha, "|");
+    telaEscrever(5, linha, "VETCARE - MANUTENCAO DE RACAS - Listagem");
+    telaEscrever(largura - 1, linha, "|");
+
+    linha++;
+
+    telaPosicionarCursor(0, linha);
+    printf("+");
+
+    for (int i = 0; i < largura - 2; i++)
+        printf("=");
+
+    printf("+");
+
+    linha++;
+
+    telaEscrever(0, linha, "|");
+    telaEscrever(1, linha, "CODIGO");
+    telaEscrever(8, linha, "RACA");
+    telaEscrever(largura - 1, linha, "|");
+
+    linha++;
+
+    telaPosicionarCursor(0, linha);
+    printf("|");
+
+    for (int i = 0; i < largura - 2; i++)
+        printf("-");
+
+    printf("|");
+
+    linha++;
 
     for (int i = 0; i < totalRacas; i++)
     {
+        telaEscrever(0, linha, "|");
         snprintf(codigo, sizeof(codigo), "%d", racas[i].codRaca);
 
-        telaEscrever(5, 8 + i, codigo);
-        telaEscrever(20, 8 + i, racas[i].nomeRaca);
+        telaEscrever(1, linha, codigo);
+        telaEscrever(7, linha, racas[i].nomeRaca);
+
+        telaEscrever(largura - 1, linha, "|");
+        linha++;
     }
 
-    telaEscrever(5, 19, "Total: ");
+    telaPosicionarCursor(0, linha);
+    printf("|");
+
+    for (int i = 0; i < largura - 2; i++)
+        printf("-");
+
+    printf("|");
+
+    linha++;
+
+    telaEscrever(0, linha, "|");
+    telaEscrever(1, linha, "Total: ");
     printf("%d", totalRacas);
+    telaEscrever(largura - 1, linha, "|");
+
+    linha++;
+
+    telaPosicionarCursor(0, linha);
+    printf("+");
+
+    for (int i = 0; i < largura - 2; i++)
+        printf("=");
+
+    printf("+");
 
     getchar();
     getchar();
@@ -276,6 +342,28 @@ static void carregarRacas(void)
     }
 
     fclose(arquivo);
+}
+
+/*
+---------------------------------
+Função Pública Validar Raça
+---------------------------------
+*/
+int validarRaca(int codigo, char *nome)
+{
+    carregarRacas();
+
+    int indice = buscarIndice(codigo);
+
+    if (indice == -1)
+    {
+        nome[0] = '\0';
+        return 0;
+    }
+
+    strcpy(nome, racas[indice].nomeRaca);
+
+    return 1;
 }
 
 /*

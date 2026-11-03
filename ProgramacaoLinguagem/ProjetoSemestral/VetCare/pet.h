@@ -13,3 +13,4 @@ typedef struct
 } Pet;
 
 void menuPets(void);
+void listarPets(void);

@@ -92,7 +92,12 @@ int main(void)
             menuCadastros();
             break;
 
+        case 2:
+            listarPets();
+            break;
+
         case 9:
+            telaLimpar();
             break;
 
         default:

@@ -9,3 +9,4 @@ typedef struct
 } Raca;
 
 void menuRacas(void);
+int validarRaca(int codigo, char *nome);
