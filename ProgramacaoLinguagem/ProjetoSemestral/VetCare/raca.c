@@ -387,7 +387,7 @@ void menuRacas(void)
         telaEscreverCentralizado("2 - Alterar", 0, 80, 6);
         telaEscreverCentralizado("3 - Excluir", 0, 80, 7);
         telaEscreverCentralizado("4 - Listar ", 0, 80, 8);
-        telaEscreverCentralizado("0 - Voltar ", 0, 80, 8);
+        telaEscreverCentralizado("0 - Voltar ", 0, 80, 9);
 
         telaEscreverCentralizado("Escolha uma opcao: ", 0, 80, 16);
         scanf("%d", &opcao);
