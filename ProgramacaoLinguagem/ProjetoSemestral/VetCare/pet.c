@@ -454,17 +454,15 @@ void menuPets(void)
     do
     {
         telaLimpar();
+        telaDesenharBox(0, 0, 80, 24);
+        telaEscreverCentralizado("MANUTENCAO PET", 0, 80, 3);
 
-        telaDesenharBox(2, 1, 70, 20);
+        telaEscreverCentralizado("1 - Incluir", 0, 80, 5);
+        telaEscreverCentralizado("2 - Excluir", 0, 80, 6);
+        telaEscreverCentralizado("3 - Listar ", 0, 80, 7);
+        telaEscreverCentralizado("0 - Voltar ", 0, 80, 8);
 
-        telaEscrever(5, 3, "VETCARE - MANUTENCAO DE PET");
-
-        telaEscrever(5, 5, "1 - Incluir");
-        telaEscrever(5, 6, "2 - Excluir");
-        telaEscrever(5, 7, "3 - Listar");
-        telaEscrever(5, 9, "0 - Voltar");
-
-        telaEscrever(5, 16, "Escolha uma opcao: ");
+        telaEscreverCentralizado("Escolha uma opcao: ", 0, 80, 16);
         scanf("%d", &opcao);
 
         switch (opcao)
@@ -485,7 +483,7 @@ void menuPets(void)
             break;
 
         default:
-            telaEscrever(5, 18, "Opcao invalida!");
+            telaEscreverCentralizado("Opcao Invalida.", 0, 80, 22);
             getchar();
             getchar();
             break;

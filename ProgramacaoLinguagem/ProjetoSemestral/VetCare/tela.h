@@ -6,6 +6,8 @@ void telaPosicionarCursor(int x, int y);
 
 void telaEscrever(int x, int y, const char* texto);
 
+void telaEscreverCentralizado(const char *texto, int xInicial, int largura, int linha);
+
 void telaDesenharBox(
     int x,
     int y,

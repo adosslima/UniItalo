@@ -20,7 +20,7 @@ static void salvarEspecies(void)
 
     if (arquivo == NULL)
     {
-        telaEscrever(5, 18, "Erro ao abrir o arquivo JSON!");
+        telaEscreverCentralizado("Erro ao abrir o arquivo JSON!", 0, 50, 22);
         getchar();
         return;
     }
@@ -164,27 +164,28 @@ Função Excluir
 static void excluirEspecie(void)
 {
     telaLimpar();
-    telaDesenharBox(2, 1, 70, 20);
-    telaEscrever(5, 3, "VETCARE - MANUTENCAO DE ESPECIES - Exclusao");
+    telaDesenharBox(0, 0, 80, 24);
+    telaEscreverCentralizado("MANUTENCAO DE ESPECIES - Exclusao", 0, 80, 3);
 
     int codigo = 0;
-    telaEscrever(5, 5, "Codigo da Especie: ");
+    telaEscreverCentralizado("Codigo da Especie: ", 0, 80, 5);
     scanf("%d", &codigo);
 
     int indice = buscarIndice(codigo);
 
     if (indice == -1)
     {
-        telaEscrever(5, 18, "Especie nao encontrada!");
+        telaEscreverCentralizado("Especie nao encontrada!", 0, 80, 22);
         getchar();
         getchar();
         return;
     }
 
-    telaEscrever(5, 17, "Confirma ");
-    printf("excluir %s? (S/N): ", especies[indice].nomeEspecie);
-
     char resposta[1];
+    char mensagem[80];
+    snprintf(mensagem, sizeof(mensagem), "Confrima excluir %s?", especies[indice].nomeEspecie);
+
+    telaEscreverCentralizado(mensagem, 0, 80, 22);
     scanf("%s", resposta);
 
     if (resposta[0] != 'S' && resposta[0] != 's')
@@ -197,7 +198,7 @@ static void excluirEspecie(void)
 
     salvarEspecies();
 
-    telaEscrever(5, 18, "Especie excluida!");
+    telaEscreverCentralizado("Especie excluida!", 0, 80, 22);
     getchar();
     getchar();
 }
@@ -210,33 +211,37 @@ Função Alterar
 static void alterarEspecie(void)
 {
     telaLimpar();
-    telaDesenharBox(2, 1, 70, 20);
-    telaEscrever(5, 3, "VETCARE - MANUTENCAO DE ESPECIES - Alteracao");
+    telaDesenharBox(0, 0, 80, 24);
+    telaEscreverCentralizado("MANUTENCAO DE ESPECIES - Alteracao", 0, 80, 3);
+
+    telaEscreverCentralizado("Codigo da Especie: ", 0, 80, 5);
+    telaEscreverCentralizado("Nome atual.......: ", 0, 80, 6);
+    telaEscreverCentralizado("Novo nome........: ", 0, 80, 7);
 
     int codigo = 0;
-    telaEscrever(5, 5, "Codigo da Especie: ");
+    telaEscreverCentralizado("Codigo da Especie: ", 0, 80, 5);
     scanf("%d", &codigo);
 
     int indice = buscarIndice(codigo);
 
     if (indice == -1)
     {
-        telaEscrever(5, 18, "Especie nao encontrada!");
+        telaEscreverCentralizado("Especie nao encontrada!", 0, 80, 22);
         getchar();
         return;
     }
 
-    telaEscrever(5, 6, "Nome atual: ");
+    telaEscreverCentralizado("Nome atual.......: ", 0, 80, 6);
     printf("%s", especies[indice].nomeEspecie);
 
     char novoNome[50];
-    telaEscrever(5, 7, "Novo nome: ");
+    telaEscreverCentralizado("Novo nome........: ", 0, 80, 7);
     scanf(" %49[^\n]", novoNome);
 
     strcpy(especies[indice].nomeEspecie, novoNome);
     salvarEspecies();
 
-    telaEscrever(5, 18, "Especie alterada!");
+    telaEscreverCentralizado("Especie alterada!", 0, 80, 22);
     getchar();
     getchar();
 }
@@ -249,12 +254,12 @@ static void alterarEspecie(void)
 static void incluirEspecie(void)
 {
     telaLimpar();
-    telaDesenharBox(2, 1, 70, 20);
-    telaEscrever(5, 3, "VETCARE - MANUTENCAO DE ESPECIES - Inclusao");
+    telaDesenharBox(0, 0, 80, 24);
+    telaEscreverCentralizado("MANUTENCAO DE ESPECIES - Alteracao", 0, 80, 3);
 
     if (totalEspecies >= MAX_ESPECIES)
     {
-        telaEscrever(5, 18, "Limite de especies atingido!");
+        telaEscreverCentralizado("Limite de especies atingido!", 0, 80, 22);
         getchar();
         return;
     }
@@ -262,11 +267,14 @@ static void incluirEspecie(void)
     Especie nova = {0};
     nova.codEspecie = proximoCodigo;
 
-    telaEscrever(5, 5, "Codigo da Especie: ");
+    telaEscreverCentralizado("Codigo da Especie: ", 0, 80, 5);
+    telaEscreverCentralizado("Nome da Especie  : ", 0, 80, 6);
+
+    telaEscreverCentralizado("Codigo da Especie: ", 0, 80, 5);
     printf("%d", nova.codEspecie);
 
     char nome[50];
-    telaEscrever(5, 6, "Nome da Especie: ");
+    telaEscreverCentralizado("Nome da Especie  : ", 0, 80, 6);
     scanf(" %49[^\n]", nome);
 
     strcpy(nova.nomeEspecie, nome);
@@ -276,7 +284,7 @@ static void incluirEspecie(void)
 
     salvarEspecies();
 
-    telaEscrever(5, 18, "Especie cadastrada!");
+    telaEscreverCentralizado("Especie cadastrada!", 0, 80, 22);
     getchar();
     getchar();
 }
@@ -380,18 +388,16 @@ void menuEspecies(void)
     do
     {
         telaLimpar();
+        telaDesenharBox(0, 0, 80, 24);
+        telaEscreverCentralizado("MANUTENCAO ESPECIE", 0, 80, 3);
 
-        telaDesenharBox(2, 1, 70, 20);
+        telaEscreverCentralizado("1 - Incluir", 0, 80, 5);
+        telaEscreverCentralizado("2 - Alterar", 0, 80, 6);
+        telaEscreverCentralizado("3 - Excluir", 0, 80, 7);
+        telaEscreverCentralizado("4 - Listar ", 0, 80, 8);
+        telaEscreverCentralizado("0 - Voltar ", 0, 80, 9);
 
-        telaEscrever(5, 3, "VETCARE - MANUTENCAO DE ESPECIES");
-
-        telaEscrever(5, 5, "1 - Incluir");
-        telaEscrever(5, 6, "2 - Alterar");
-        telaEscrever(5, 7, "3 - Excluir");
-        telaEscrever(5, 8, "4 - Listar");
-        telaEscrever(5, 10, "0 - Voltar");
-
-        telaEscrever(5, 16, "Escolha uma opcao: ");
+        telaEscreverCentralizado("Escolha uma opcao: ", 0, 80, 16);
         scanf("%d", &opcao);
 
         switch (opcao)
@@ -416,7 +422,7 @@ void menuEspecies(void)
             break;
 
         default:
-            telaEscrever(5, 18, "Opcao invalida!");
+            telaEscreverCentralizado("Opcao Invalida.", 0, 80, 22);
             getchar();
             getchar();
             break;

@@ -13,18 +13,17 @@ void menuCadastros(void)
     do
     {
         telaLimpar();
-        telaDesenharBox(2, 1, 70, 20);
+        telaDesenharBox(0, 0, 80, 24);
+        telaEscreverCentralizado("MENU CADASTROS", 0, 80, 3);
 
-        telaEscrever(5, 3, "VETCARE - CADASTROS");
+        telaEscreverCentralizado("1 - Cadastrar Especie    ", 0, 80, 5);
+        telaEscreverCentralizado("2 - Cadastrar Raca       ", 0, 80, 6);
+        telaEscreverCentralizado("3 - Cadastrar Tutor      ", 0, 80, 7);
+        telaEscreverCentralizado("4 - Cadastrar Veterinario", 0, 80, 8);
+        telaEscreverCentralizado("5 - Cadastrar Pet        ", 0, 80, 9);
+        telaEscreverCentralizado("0 - Voltar               ", 0, 80, 10);
 
-        telaEscrever(5, 5, "1 - Cadastrar Especie");
-        telaEscrever(5, 6, "2 - Cadastrar Raca");
-        telaEscrever(5, 7, "3 - Cadastrar Tutor");
-        telaEscrever(5, 8, "4 - Cadastrar Veterinario");
-        telaEscrever(5, 9, "5 - Cadastrar Pet");
-        telaEscrever(5, 11, "0 - Voltar");
-
-        telaEscrever(5, 13, "Escolha uma opcao: ");
+        telaEscreverCentralizado("Escolha uma opcao: ", 0, 80, 16);
         scanf("%d", &opcao);
 
         switch (opcao)
@@ -53,7 +52,7 @@ void menuCadastros(void)
             break;
 
         default:
-            telaEscrever(5, 18, "Opcao invalida!");
+            telaEscreverCentralizado("Opcao Invalida.", 0, 80, 22);
             getchar();
             getchar();
             break;
@@ -69,21 +68,20 @@ int main(void)
     do
     {
         telaLimpar();
-        telaDesenharBox(2, 1, 70, 20);
+        telaDesenharBox(0, 0, 80, 24);
+        telaEscreverCentralizado("MENU PRINCIPAL", 0, 80, 3);
 
-        telaEscrever(5, 3, "VETCARE - SISTEMA DE GESTAO");
+        telaEscreverCentralizado("1 - Cadastrar             ", 0, 80, 5);
+        telaEscreverCentralizado("2 - Listar Pets           ", 0, 80, 6);
+        telaEscreverCentralizado("3 - Pesquisar Pet         ", 0, 80, 7);
+        telaEscreverCentralizado("4 - Registrar Atendimento ", 0, 80, 8);
+        telaEscreverCentralizado("5 - Registrar Servico     ", 0, 80, 9);
+        telaEscreverCentralizado("6 - Consultar Historico   ", 0, 80, 10);
+        telaEscreverCentralizado("7 - Relatorio Atendimentos", 0, 80, 11);
+        telaEscreverCentralizado("8 - Faturamento           ", 0, 80, 12);
+        telaEscreverCentralizado("9 - Sair                  ", 0, 80, 13);
 
-        telaEscrever(5, 5, "1 - Cadastrar");
-        telaEscrever(5, 6, "2 - Listar Pets");
-        telaEscrever(5, 7, "3 - Pesquisar Pet");
-        telaEscrever(5, 8, "4 - Registrar Atendimento");
-        telaEscrever(5, 9, "5 - Registrar Servico");
-        telaEscrever(5, 10, "6 - Consultar Historico");
-        telaEscrever(5, 11, "7 - Relatorio Atendimentos");
-        telaEscrever(5, 12, "8 - Faturamento");
-        telaEscrever(5, 13, "9 - Sair");
-
-        telaEscrever(5, 16, "Escolha uma opcao: ");
+        telaEscreverCentralizado("Escolha uma opcao: ", 0, 80, 16);
         scanf("%d", &opcao);
 
         switch (opcao)
@@ -101,7 +99,7 @@ int main(void)
             break;
 
         default:
-            telaEscrever(5, 18, "Funcionalidade nao implementada.");
+            telaEscreverCentralizado("Opcao Invalida.", 0, 80, 22);
             getchar();
             getchar();
             break;
