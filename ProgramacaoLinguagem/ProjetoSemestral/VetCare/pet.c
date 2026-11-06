@@ -24,7 +24,7 @@ static void salvarPets(void)
 
     if (arquivo == NULL)
     {
-        telaEscrever(5, 18, "Erro ao abrir o arquivo JSON!");
+        telaEscreverCentralizado("Erro ao abrir o arquivo JSON!", 0, 50, 22);
         getchar();
         return;
     }
@@ -77,28 +77,31 @@ Função Excluir
 */
 static void excluirPet(void)
 {
-    telaLimpar();
-    telaDesenharBox(2, 1, 70, 20);
-    telaEscrever(5, 3, "VETCARE - MANUTENCAO DE PETS - Exclusao");
-
     int codigo = 0;
-    telaEscrever(5, 5, "Codigo do Pet: ");
+    int indice = 0;
+    char resposta[1];
+    char mensagem[80];
+
+    telaLimpar();
+    telaDesenharBox(0, 0, 80, 24);
+    telaEscreverCentralizado("MANUTENCAO DE PETS - Exclusao", 0, 80, 3);
+
+    telaEscrever(10, 10, "Codigo do Pet: ");
     scanf("%d", &codigo);
 
-    int indice = buscarIndice(codigo);
+    indice = buscarIndice(codigo);
 
     if (indice == -1)
     {
-        telaEscrever(5, 18, "Pet nao encontrado!");
+        telaEscreverCentralizado("Pet nao encontrado!", 0, 80, 22);
         getchar();
         getchar();
         return;
     }
 
-    telaEscrever(5, 17, "Confirma ");
-    printf("excluir %s? (S/N): ", pets[indice].nomePet);
+    snprintf(mensagem, sizeof(mensagem), "Confirma excluir [%s]?", pets[indice].nomePet);
 
-    char resposta[1];
+    telaEscreverCentralizado(mensagem, 0, 80, 22);
     scanf("%s", resposta);
 
     if (resposta[0] != 'S' && resposta[0] != 's')
@@ -111,7 +114,7 @@ static void excluirPet(void)
 
     salvarPets();
 
-    telaEscrever(5, 18, "Pet excluido!");
+    telaEscreverCentralizado("Pet excluido!", 0, 80, 22);
     getchar();
     getchar();
 }
@@ -123,74 +126,79 @@ static void excluirPet(void)
 */
 static void incluirPet(void)
 {
+    Pet nova = {0};
+    nova.codPet = proximoCodigo;
+    Data nascimento = {0};
+    char nome[50];
+    char nomeValido[50] = {0};
+    int erro = 0;
+
     telaLimpar();
-    telaDesenharBox(2, 1, 70, 20);
-    telaEscrever(5, 3, "VETCARE - MANUTENCAO DE PETS - Inclusao");
+    telaDesenharBox(0, 0, 80, 24);
+    telaEscreverCentralizado("MANUTENCAO DE PETS - Inclusao", 0, 80, 3);
 
     if (totalPets >= MAX_PETS)
     {
-        telaEscrever(5, 18, "Limite de pets atingido!");
+        telaEscreverCentralizado("Limite de pets atingido!", 0, 80, 22);
         getchar();
         return;
     }
 
-    Pet nova = {0};
-    nova.codPet = proximoCodigo;
+    telaEscrever(5, 6, "Codigo do Pet..................: ");
+    telaEscrever(5, 7, "Codigo do Tutor................: ");
+    telaEscrever(5, 8, "Codigo da Especie..............: ");
+    telaEscrever(5, 9, "Codigo do Raca.................: ");
+    telaEscrever(5, 10, "Nome do Pet....................: ");
+    telaEscrever(5, 11, "Data de nascimento (AAAA-MM-DD): ");
 
-    telaEscrever(5, 5, "Codigo do Pet: ");
+    telaEscrever(5, 6, "Codigo do Pet..................: ");
     printf("%d", nova.codPet);
-
-    char nomeValido[50] = {0};
 
     do
     {
         nova.codTutor = 0;
 
-        telaEscrever(5, 6, "Codigo do Tutor: ");
+        telaEscrever(5, 7, "Codigo do Tutor................: ");
         scanf("%d", &nova.codTutor);
     } while (validarTutor(nova.codTutor, nomeValido) == 0);
 
-    telaEscrever(30, 6, nomeValido);
+    telaEscrever(42, 7, nomeValido);
 
     do
     {
         nova.codEspecie = 0;
 
-        telaEscrever(5, 7, "Codigo da Especie: ");
+        telaEscrever(5, 8, "Codigo da Especie..............: ");
         scanf("%d", &nova.codEspecie);
     } while (validarEspecie(nova.codEspecie, nomeValido) == 0);
 
-    telaEscrever(30, 7, nomeValido);
+    telaEscrever(42, 8, nomeValido);
 
     do
     {
         nova.codRaca = 0;
 
-        telaEscrever(5, 8, "Codigo do Raca: ");
+        telaEscrever(5, 9, "Codigo do Raca.................: ");
         scanf("%d", &nova.codRaca);
     } while (validarRaca(nova.codRaca, nomeValido) == 0);
 
-    telaEscrever(30, 8, nomeValido);
+    telaEscrever(42, 9, nomeValido);
 
-    char nome[50];
-    telaEscrever(5, 9, "Nome do Pet: ");
+    telaEscrever(5, 10, "Nome do Pet....................: ");
     scanf(" %49[^\n]", nome);
 
     strcpy(nova.nomePet, nome);
 
-    Data nascimento = {0};
-    int erro = 0;
-
     do
     {
-        telaEscrever(5, 10, "Data de nascimento (AAAA-MM-DD): ");
+        telaEscrever(5, 11, "Data de nascimento (AAAA-MM-DD): ");
 
         if (scanf("%d-%d-%d",
                   &nascimento.ano,
                   &nascimento.mes,
                   &nascimento.dia) != 3)
         {
-            telaEscrever(5, 19, "Formato de data invalido!");
+            telaEscreverCentralizado("Formato de data invalido!", 0, 80, 22);
             getchar();
             getchar();
 
@@ -215,7 +223,7 @@ static void incluirPet(void)
 
     salvarPets();
 
-    telaEscrever(5, 18, "Pet cadastrado!");
+    telaEscreverCentralizado("Pet cadastrado!", 0, 80, 22);
     getchar();
     getchar();
 }
@@ -349,7 +357,7 @@ void listarPets(void)
     linha++;
 
     telaEscrever(0, linha, "|");
-    telaEscrever(5, linha, "VETCARE - MANUTENCAO DE PETS - Listagem");
+    telaEscreverCentralizado("VETCARE - MANUTENCAO DE PETS - Listagem", 0, 70, linha);
     telaEscrever(largura - 1, linha, "|");
 
     linha++;
@@ -483,7 +491,7 @@ void menuPets(void)
             break;
 
         default:
-            telaEscreverCentralizado("Opcao Invalida.", 0, 80, 22);
+            telaEscreverCentralizado("Opcao Invalida!", 0, 80, 22);
             getchar();
             getchar();
             break;

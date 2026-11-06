@@ -20,7 +20,7 @@ static void salvarRacas(void)
 
     if (arquivo == NULL)
     {
-        telaEscrever(5, 18, "Erro ao abrir o arquivo JSON!");
+        telaEscreverCentralizado("Erro ao abrir o arquivo JSON!", 0, 50, 22);
         getchar();
         return;
     }
@@ -68,7 +68,7 @@ static void listarRacas(void)
     linha++;
 
     telaEscrever(0, linha, "|");
-    telaEscrever(5, linha, "VETCARE - MANUTENCAO DE RACAS - Listagem");
+    telaEscreverCentralizado("VETCARE - MANUTENCAO DE RACAS - Listagem", 0, 70, linha);
     telaEscrever(largura - 1, linha, "|");
 
     linha++;
@@ -163,28 +163,31 @@ Função Excluir
 */
 static void excluirRaca(void)
 {
-    telaLimpar();
-    telaDesenharBox(2, 1, 70, 20);
-    telaEscrever(5, 3, "VETCARE - MANUTENCAO DE RACAS - Exclusao");
-
     int codigo = 0;
-    telaEscrever(5, 5, "Codigo da Raca: ");
+    int indice = 0;
+    char resposta[1];
+    char mensagem[80];
+
+    telaLimpar();
+    telaDesenharBox(0, 0, 80, 24);
+    telaEscreverCentralizado("MANUTENCAO DE RACAS - Exclusao", 0, 80, 3);
+
+    telaEscrever(10, 10, "Codigo da Raca: ");
     scanf("%d", &codigo);
 
-    int indice = buscarIndice(codigo);
+    indice = buscarIndice(codigo);
 
     if (indice == -1)
     {
-        telaEscrever(5, 18, "Raca nao encontrada!");
+        telaEscreverCentralizado("Raca nao encontrada!", 0, 80, 22);
         getchar();
         getchar();
         return;
     }
 
-    telaEscrever(5, 17, "Confirma ");
-    printf("excluir %s? (S/N): ", racas[indice].nomeRaca);
+    snprintf(mensagem, sizeof(mensagem), "Confirma excluir [%s]?", racas[indice].nomeRaca);
 
-    char resposta[1];
+    telaEscreverCentralizado(mensagem, 0, 80, 22);
     scanf("%s", resposta);
 
     if (resposta[0] != 'S' && resposta[0] != 's')
@@ -197,7 +200,7 @@ static void excluirRaca(void)
 
     salvarRacas();
 
-    telaEscrever(5, 18, "Raca excluida!");
+    telaEscreverCentralizado("Raca excluida!", 0, 80, 22);
     getchar();
     getchar();
 }
@@ -209,34 +212,40 @@ Função Alterar
 */
 static void alterarRaca(void)
 {
-    telaLimpar();
-    telaDesenharBox(2, 1, 70, 20);
-    telaEscrever(5, 3, "VETCARE - MANUTENCAO DE RACAS - Alteracao");
-
     int codigo = 0;
-    telaEscrever(5, 5, "Codigo da Raca: ");
+    int indice = 0;
+    char novoNome[50];
+
+    telaLimpar();
+    telaDesenharBox(0, 0, 80, 24);
+    telaEscreverCentralizado("MANUTENCAO DE RACAS - Alteracao", 0, 80, 3);
+
+    telaEscrever(10, 10, "Codigo da Raca...: ");
+    telaEscrever(10, 11, "Nome atual.......: ");
+    telaEscrever(10, 12, "Novo nome........: ");
+
+    telaEscrever(10, 10, "Codigo da Raca...: ");
     scanf("%d", &codigo);
 
-    int indice = buscarIndice(codigo);
+    indice = buscarIndice(codigo);
 
     if (indice == -1)
     {
-        telaEscrever(5, 18, "Raca nao encontrada!");
+        telaEscreverCentralizado("Raca nao encontrada!", 0, 80, 22);
         getchar();
         return;
     }
 
-    telaEscrever(5, 6, "Nome atual: ");
+    telaEscrever(10, 11, "Nome atual.......: ");
     printf("%s", racas[indice].nomeRaca);
 
-    char novoNome[50];
-    telaEscrever(5, 7, "Novo nome: ");
+    telaEscrever(10, 12, "Novo nome........: ");
     scanf(" %49[^\n]", novoNome);
 
     strcpy(racas[indice].nomeRaca, novoNome);
     salvarRacas();
 
-    telaEscrever(5, 18, "Raca alterada!");
+    telaEscreverCentralizado("Raca alterada!", 0, 80, 22);
     getchar();
     getchar();
 }
@@ -248,25 +257,28 @@ static void alterarRaca(void)
 */
 static void incluirRaca(void)
 {
+    Raca nova = {0};
+    nova.codRaca = proximoCodigo;
+    char nome[50];
+
     telaLimpar();
-    telaDesenharBox(2, 1, 70, 20);
-    telaEscrever(5, 3, "VETCARE - MANUTENCAO DE RACAS - Inclusao");
+    telaDesenharBox(0, 0, 80, 24);
+    telaEscreverCentralizado("MANUTENCAO DE RACAS - Alteracao", 0, 80, 3);
 
     if (totalRacas >= MAX_RACAS)
     {
-        telaEscrever(5, 18, "Limite de racas atingido!");
+        telaEscreverCentralizado("Limite de racas atingido!", 0, 80, 22);
         getchar();
         return;
     }
 
-    Raca nova = {0};
-    nova.codRaca = proximoCodigo;
+    telaEscrever(10, 10, "Codigo da Raca: ");
+    telaEscrever(10, 11, "Nome da Raca  : ");
 
-    telaEscrever(5, 5, "Codigo da Raca: ");
+    telaEscrever(10, 10, "Codigo da Raca: ");
     printf("%d", nova.codRaca);
 
-    char nome[50];
-    telaEscrever(5, 6, "Nome da Raca: ");
+    telaEscrever(10, 11, "Nome da Raca  : ");
     scanf(" %49[^\n]", nome);
 
     strcpy(nova.nomeRaca, nome);
@@ -276,7 +288,7 @@ static void incluirRaca(void)
 
     salvarRacas();
 
-    telaEscrever(5, 18, "Raca cadastrada!");
+    telaEscreverCentralizado("Raca cadastrada!", 0, 80, 22);
     getchar();
     getchar();
 }

@@ -68,7 +68,7 @@ static void listarEspecies(void)
     linha++;
 
     telaEscrever(0, linha, "|");
-    telaEscrever(5, linha, "VETCARE - MANUTENCAO DE ESPECIES - Listagem");
+    telaEscreverCentralizado("VETCARE - MANUTENCAO DE ESPECIES - Listagem", 0, 70, linha);
     telaEscrever(largura - 1, linha, "|");
 
     linha++;
@@ -163,15 +163,19 @@ Função Excluir
 */
 static void excluirEspecie(void)
 {
+    int codigo = 0;
+    int indice = 0;
+    char resposta[1];
+    char mensagem[80];
+
     telaLimpar();
     telaDesenharBox(0, 0, 80, 24);
     telaEscreverCentralizado("MANUTENCAO DE ESPECIES - Exclusao", 0, 80, 3);
 
-    int codigo = 0;
-    telaEscreverCentralizado("Codigo da Especie: ", 0, 80, 5);
+    telaEscrever(10, 10, "Codigo da Especie: ");
     scanf("%d", &codigo);
 
-    int indice = buscarIndice(codigo);
+    indice = buscarIndice(codigo);
 
     if (indice == -1)
     {
@@ -181,9 +185,7 @@ static void excluirEspecie(void)
         return;
     }
 
-    char resposta[1];
-    char mensagem[80];
-    snprintf(mensagem, sizeof(mensagem), "Confrima excluir %s?", especies[indice].nomeEspecie);
+    snprintf(mensagem, sizeof(mensagem), "Confirma excluir [%s]?", especies[indice].nomeEspecie);
 
     telaEscreverCentralizado(mensagem, 0, 80, 22);
     scanf("%s", resposta);
@@ -210,19 +212,22 @@ Função Alterar
 */
 static void alterarEspecie(void)
 {
+    int codigo = 0;
+    int indice = 0;
+    char novoNome[50];
+
     telaLimpar();
     telaDesenharBox(0, 0, 80, 24);
     telaEscreverCentralizado("MANUTENCAO DE ESPECIES - Alteracao", 0, 80, 3);
 
-    telaEscreverCentralizado("Codigo da Especie: ", 0, 80, 5);
-    telaEscreverCentralizado("Nome atual.......: ", 0, 80, 6);
-    telaEscreverCentralizado("Novo nome........: ", 0, 80, 7);
+    telaEscrever(10, 10, "Codigo da Especie: ");
+    telaEscrever(10, 11, "Nome atual.......: ");
+    telaEscrever(10, 12, "Novo nome........: ");
 
-    int codigo = 0;
-    telaEscreverCentralizado("Codigo da Especie: ", 0, 80, 5);
+    telaEscrever(10, 10, "Codigo da Especie: ");
     scanf("%d", &codigo);
 
-    int indice = buscarIndice(codigo);
+    indice = buscarIndice(codigo);
 
     if (indice == -1)
     {
@@ -231,11 +236,10 @@ static void alterarEspecie(void)
         return;
     }
 
-    telaEscreverCentralizado("Nome atual.......: ", 0, 80, 6);
+    telaEscrever(10, 11, "Nome atual.......: ");
     printf("%s", especies[indice].nomeEspecie);
 
-    char novoNome[50];
-    telaEscreverCentralizado("Novo nome........: ", 0, 80, 7);
+    telaEscrever(10, 12, "Novo nome........: ");
     scanf(" %49[^\n]", novoNome);
 
     strcpy(especies[indice].nomeEspecie, novoNome);
@@ -253,9 +257,13 @@ static void alterarEspecie(void)
 */
 static void incluirEspecie(void)
 {
+    Especie nova = {0};
+    nova.codEspecie = proximoCodigo;
+    char nome[50];
+
     telaLimpar();
     telaDesenharBox(0, 0, 80, 24);
-    telaEscreverCentralizado("MANUTENCAO DE ESPECIES - Alteracao", 0, 80, 3);
+    telaEscreverCentralizado("MANUTENCAO DE ESPECIES - Inclusão", 0, 80, 3);
 
     if (totalEspecies >= MAX_ESPECIES)
     {
@@ -264,17 +272,13 @@ static void incluirEspecie(void)
         return;
     }
 
-    Especie nova = {0};
-    nova.codEspecie = proximoCodigo;
+    telaEscrever(10, 10, "Codigo da Especie: ");
+    telaEscrever(10, 11, "Nome da Especie..: ");
 
-    telaEscreverCentralizado("Codigo da Especie: ", 0, 80, 5);
-    telaEscreverCentralizado("Nome da Especie  : ", 0, 80, 6);
-
-    telaEscreverCentralizado("Codigo da Especie: ", 0, 80, 5);
+    telaEscrever(10, 10, "Codigo da Especie: ");
     printf("%d", nova.codEspecie);
 
-    char nome[50];
-    telaEscreverCentralizado("Nome da Especie  : ", 0, 80, 6);
+    telaEscrever(10, 11, "Nome da Especie..: ");
     scanf(" %49[^\n]", nome);
 
     strcpy(nova.nomeEspecie, nome);
@@ -422,7 +426,7 @@ void menuEspecies(void)
             break;
 
         default:
-            telaEscreverCentralizado("Opcao Invalida.", 0, 80, 22);
+            telaEscreverCentralizado("Opcao Invalida!", 0, 80, 22);
             getchar();
             getchar();
             break;

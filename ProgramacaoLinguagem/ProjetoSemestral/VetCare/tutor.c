@@ -20,7 +20,7 @@ static void salvarTutores(void)
 
     if (arquivo == NULL)
     {
-        telaEscrever(5, 18, "Erro ao abrir o arquivo JSON!");
+        telaEscreverCentralizado("Erro ao abrir o arquivo JSON!", 0, 50, 22);
         getchar();
         return;
     }
@@ -68,7 +68,7 @@ static void listarTutores(void)
     linha++;
 
     telaEscrever(0, linha, "|");
-    telaEscrever(5, linha, "VETCARE - MANUTENCAO DE TUTORES - Listagem");
+    telaEscreverCentralizado("VETCARE - MANUTENCAO DE TUTORES - Listagem", 0, 70, linha);
     telaEscrever(largura - 1, linha, "|");
 
     linha++;
@@ -163,15 +163,19 @@ Função Excluir
 */
 static void excluirTutor(void)
 {
-    telaLimpar();
-    telaDesenharBox(2, 1, 70, 20);
-    telaEscrever(5, 3, "VETCARE - MANUTENCAO DE TUTORES - Exclusao");
-
     int codigo = 0;
-    telaEscrever(5, 5, "Codigo do Tutor: ");
+    int indice = 0;
+    char resposta[1];
+    char mensagem[80];
+
+    telaLimpar();
+    telaDesenharBox(0, 0, 80, 24);
+    telaEscreverCentralizado("MANUTENCAO DE TUTORES - Exclusao", 0, 80, 3);
+
+    telaEscrever(10, 10, "Codigo da Tutor: ");
     scanf("%d", &codigo);
 
-    int indice = buscarIndice(codigo);
+    indice = buscarIndice(codigo);
 
     if (indice == -1)
     {
@@ -181,10 +185,9 @@ static void excluirTutor(void)
         return;
     }
 
-    telaEscrever(5, 17, "Confirma ");
-    printf("excluir %s? (S/N): ", tutores[indice].nomeTutor);
+    snprintf(mensagem, sizeof(mensagem), "Confirma excluir [%s]?", tutores[indice].nomeTutor);
 
-    char resposta[1];
+    telaEscreverCentralizado(mensagem, 0, 80, 22);
     scanf("%s", resposta);
 
     if (resposta[0] != 'S' && resposta[0] != 's')
@@ -197,7 +200,7 @@ static void excluirTutor(void)
 
     salvarTutores();
 
-    telaEscrever(5, 18, "Tutor excluido!");
+    telaEscreverCentralizado("Tutor excluido!", 0, 80, 22);
     getchar();
     getchar();
 }
@@ -209,34 +212,40 @@ Função Alterar
 */
 static void alterarTutor(void)
 {
-    telaLimpar();
-    telaDesenharBox(2, 1, 70, 20);
-    telaEscrever(5, 3, "VETCARE - MANUTENCAO DE TUTORES - Alteracao");
-
     int codigo = 0;
-    telaEscrever(5, 5, "Codigo do Tutor: ");
+    int indice = 0;
+    char novoNome[50];
+
+    telaLimpar();
+    telaDesenharBox(0, 0, 80, 24);
+    telaEscreverCentralizado("MANUTENCAO DE TUTORES - Alteracao", 0, 80, 3);
+
+    telaEscrever(10, 10, "Codigo da Tutor: ");
+    telaEscrever(10, 11, "Nome atual.....: ");
+    telaEscrever(10, 12, "Novo nome......: ");
+
+    telaEscrever(10, 10, "Codigo da Tutor: ");
     scanf("%d", &codigo);
 
-    int indice = buscarIndice(codigo);
+    indice = buscarIndice(codigo);
 
     if (indice == -1)
     {
-        telaEscrever(5, 18, "Tutor nao encontrado!");
+        telaEscreverCentralizado("Tutor nao encontrado!", 0, 80, 22);
         getchar();
         return;
     }
 
-    telaEscrever(5, 6, "Nome atual: ");
+    telaEscrever(10, 11, "Nome atual.....: ");
     printf("%s", tutores[indice].nomeTutor);
 
-    char novoNome[50];
-    telaEscrever(5, 7, "Novo nome: ");
+    telaEscrever(10, 12, "Novo nome......: ");
     scanf(" %49[^\n]", novoNome);
 
     strcpy(tutores[indice].nomeTutor, novoNome);
     salvarTutores();
 
-    telaEscrever(5, 18, "Tutor alterado!");
+    telaEscreverCentralizado("Tutor alterado!", 0, 80, 22);
     getchar();
     getchar();
 }
@@ -248,25 +257,28 @@ static void alterarTutor(void)
 */
 static void incluirTutor(void)
 {
+    Tutor nova = {0};
+    nova.codTutor = proximoCodigo;
+    char nome[50];
+
     telaLimpar();
-    telaDesenharBox(2, 1, 70, 20);
-    telaEscrever(5, 3, "VETCARE - MANUTENCAO DE TUTORES - Inclusao");
+    telaDesenharBox(0, 0, 80, 24);
+    telaEscreverCentralizado("MANUTENCAO DE TUTORES - Inclusao", 0, 80, 3);
 
     if (totalTutores >= MAX_TUTORES)
     {
-        telaEscrever(5, 18, "Limite de tutores atingido!");
+        telaEscreverCentralizado("Limite de tutores atingido!", 0, 80, 22);
         getchar();
         return;
     }
 
-    Tutor nova = {0};
-    nova.codTutor = proximoCodigo;
+    telaEscrever(10, 10, "Codigo da Tutor: ");
+    telaEscrever(10, 11, "Nome da Tutor  : ");
 
-    telaEscrever(5, 5, "Codigo do Tutor: ");
+    telaEscrever(10, 10, "Codigo da Tutor: ");
     printf("%d", nova.codTutor);
 
-    char nome[50];
-    telaEscrever(5, 6, "Nome do Tutor: ");
+    telaEscrever(10, 11, "Nome da Tutor  : ");
     scanf(" %49[^\n]", nome);
 
     strcpy(nova.nomeTutor, nome);
@@ -276,7 +288,7 @@ static void incluirTutor(void)
 
     salvarTutores();
 
-    telaEscrever(5, 18, "Tutor cadastrado!");
+    telaEscreverCentralizado("Tutor cadastrado!", 0, 80, 22);
     getchar();
     getchar();
 }
@@ -414,7 +426,7 @@ void menuTutores(void)
             break;
 
         default:
-            telaEscreverCentralizado("Opcao Invalida.", 0, 80, 22);
+            telaEscreverCentralizado("Opcao Invalida!", 0, 80, 22);
             getchar();
             getchar();
             break;

@@ -20,7 +20,7 @@ static void salvarVeterinarios(void)
 
     if (arquivo == NULL)
     {
-        telaEscrever(5, 18, "Erro ao abrir o arquivo JSON!");
+        telaEscreverCentralizado("Erro ao abrir o arquivo JSON!", 0, 50, 22);
         getchar();
         return;
     }
@@ -68,7 +68,7 @@ static void listarVeterinarios(void)
     linha++;
 
     telaEscrever(0, linha, "|");
-    telaEscrever(5, linha, "VETCARE - MANUTENCAO DE VETERINARIOS - Listagem");
+    telaEscreverCentralizado("VETCARE - MANUTENCAO DE VETERINARIOS - Listagem", 0, 70, linha);
     telaEscrever(largura - 1, linha, "|");
 
     linha++;
@@ -106,7 +106,7 @@ static void listarVeterinarios(void)
     {
         telaEscrever(0, linha, "|");
         snprintf(codigo, sizeof(codigo), "%d", veterinarios[i].codVeterinario);
-        
+
         telaEscrever(5, linha, codigo);
         telaEscrever(8, linha, veterinarios[i].nomeVeterinario);
 
@@ -125,7 +125,7 @@ static void listarVeterinarios(void)
     linha++;
 
     telaEscrever(0, linha, "|");
-    telaEscrever(1,linha,"Total: ");
+    telaEscrever(1, linha, "Total: ");
     printf("%d", totalVeterinarios);
     telaEscrever(largura - 1, linha, "|");
 
@@ -165,28 +165,31 @@ Função Excluir
 */
 static void excluirVeterinario(void)
 {
-    telaLimpar();
-    telaDesenharBox(2, 1, 70, 20);
-    telaEscrever(5, 3, "VETCARE - MANUTENCAO DE VETERINARIOS - Exclusao");
-
     int codigo = 0;
-    telaEscrever(5, 5, "Codigo do Veterinario: ");
+    int indice = 0;
+    char resposta[1];
+    char mensagem[80];
+
+    telaLimpar();
+    telaDesenharBox(0, 0, 80, 24);
+    telaEscreverCentralizado("MANUTENCAO DE VETERINARIOS - Exclusao", 0, 80, 3);
+
+    telaEscrever(10, 10, "Codigo do Veterinario: ");
     scanf("%d", &codigo);
 
-    int indice = buscarIndice(codigo);
+    indice = buscarIndice(codigo);
 
     if (indice == -1)
     {
-        telaEscrever(5, 18, "Veterinario nao encontrado!");
+        telaEscreverCentralizado("Veterinario nao encontrado!", 0, 80, 22);
         getchar();
         getchar();
         return;
     }
 
-    telaEscrever(5, 17, "Confirma ");
-    printf("excluir %s? (S/N): ", veterinarios[indice].nomeVeterinario);
+    snprintf(mensagem, sizeof(mensagem), "Confirma excluir [%s]?", veterinarios[indice].nomeVeterinario);
 
-    char resposta[1];
+    telaEscreverCentralizado(mensagem, 0, 80, 22);
     scanf("%s", resposta);
 
     if (resposta[0] != 'S' && resposta[0] != 's')
@@ -199,7 +202,7 @@ static void excluirVeterinario(void)
 
     salvarVeterinarios();
 
-    telaEscrever(5, 18, "Veterinario excluido!");
+    telaEscreverCentralizado("Veterinario excluido!", 0, 80, 22);
     getchar();
     getchar();
 }
@@ -211,15 +214,22 @@ Função Alterar
 */
 static void alterarVeterinario(void)
 {
-    telaLimpar();
-    telaDesenharBox(2, 1, 70, 20);
-    telaEscrever(5, 3, "VETCARE - MANUTENCAO DE VETERINARIOS - Alteracao");
-
     int codigo = 0;
-    telaEscrever(5, 5, "Codigo do Veterinario: ");
+    int indice = 0;
+    char novoNome[50];
+
+    telaLimpar();
+    telaDesenharBox(0, 0, 80, 24);
+    telaEscreverCentralizado("MANUTENCAO DE VETERINARIOS - Alteracao", 0, 80, 3);
+
+    telaEscrever(10, 10, "Codigo do Veterinario: ");
+    telaEscrever(10, 11, "Nome atual...........: ");
+    telaEscrever(10, 12, "Novo nome............: ");
+
+    telaEscrever(10, 10, "Codigo do Veterinario: ");
     scanf("%d", &codigo);
 
-    int indice = buscarIndice(codigo);
+    indice = buscarIndice(codigo);
 
     if (indice == -1)
     {
@@ -228,17 +238,16 @@ static void alterarVeterinario(void)
         return;
     }
 
-    telaEscrever(5, 6, "Nome atual: ");
+    telaEscrever(10, 11, "Nome atual...........: ");
     printf("%s", veterinarios[indice].nomeVeterinario);
 
-    char novoNome[50];
-    telaEscrever(5, 7, "Novo nome: ");
+    telaEscrever(10, 12, "Novo nome............: ");
     scanf(" %49[^\n]", novoNome);
 
     strcpy(veterinarios[indice].nomeVeterinario, novoNome);
     salvarVeterinarios();
 
-    telaEscrever(5, 18, "Veterinario alterado!");
+    telaEscreverCentralizado("Veterinario alterado!", 0, 80, 22);
     getchar();
     getchar();
 }
@@ -250,25 +259,28 @@ static void alterarVeterinario(void)
 */
 static void incluirVeterinario(void)
 {
+    Veterinario nova = {0};
+    nova.codVeterinario = proximoCodigo;
+    char nome[50];
+
     telaLimpar();
-    telaDesenharBox(2, 1, 70, 20);
-    telaEscrever(5, 3, "VETCARE - MANUTENCAO DE VETERINARIOS - Inclusao");
+    telaDesenharBox(0, 0, 80, 24);
+    telaEscreverCentralizado("MANUTENCAO DE VETERINARIOS - Alteracao", 0, 80, 3);
 
     if (totalVeterinarios >= MAX_VETERINARIOS)
     {
-        telaEscrever(5, 18, "Limite de veterinarios atingido!");
+        telaEscreverCentralizado("Limite de veterinarios atingido!", 0, 80, 22);
         getchar();
         return;
     }
 
-    Veterinario nova = {0};
-    nova.codVeterinario = proximoCodigo;
+    telaEscrever(10, 10, "Codigo da Veterinario: ");
+    telaEscrever(10, 11, "Nome da Veterinario..: ");
 
-    telaEscrever(5, 5, "Codigo do Veterinario: ");
+    telaEscrever(10, 10, "Codigo da Veterinario: ");
     printf("%d", nova.codVeterinario);
 
-    char nome[50];
-    telaEscrever(5, 6, "Nome do Veterinario: ");
+    telaEscrever(10, 11, "Nome da Veterinario..: ");
     scanf(" %49[^\n]", nome);
 
     strcpy(nova.nomeVeterinario, nome);
@@ -278,7 +290,7 @@ static void incluirVeterinario(void)
 
     salvarVeterinarios();
 
-    telaEscrever(5, 18, "Veterinario cadastrado!");
+    telaEscreverCentralizado("Veterinario cadastrado!", 0, 80, 22);
     getchar();
     getchar();
 }
@@ -394,7 +406,7 @@ void menuVeterinarios(void)
             break;
 
         default:
-            telaEscreverCentralizado("Opcao Invalida.", 0, 80, 22);
+            telaEscreverCentralizado("Opcao Invalida!", 0, 80, 22);
             getchar();
             getchar();
             break;
