@@ -1,0 +1,282 @@
+[
+  {
+    "codVacina": 1,
+    "nomeVacina": "Antirrabica Canina",
+    "dataValidade": "2028-08-12",
+    "valorVacina": 24500,
+    "estoqueVacina": 19
+  },
+  {
+    "codVacina": 2,
+    "nomeVacina": "Antirrabica Felina",
+    "dataValidade": "2029-03-23",
+    "valorVacina": 5000,
+    "estoqueVacina": 40
+  },
+  {
+    "codVacina": 3,
+    "nomeVacina": "Polivalente Canina V8",
+    "dataValidade": "2027-10-07",
+    "valorVacina": 12000,
+    "estoqueVacina": 33
+  },
+  {
+    "codVacina": 4,
+    "nomeVacina": "Polivalente Canina V10",
+    "dataValidade": "2028-05-18",
+    "valorVacina": 8500,
+    "estoqueVacina": 18
+  },
+  {
+    "codVacina": 5,
+    "nomeVacina": "Polivalente Canina V6",
+    "dataValidade": "2029-12-02",
+    "valorVacina": 26000,
+    "estoqueVacina": 74
+  },
+  {
+    "codVacina": 6,
+    "nomeVacina": "Polivalente Canina V7",
+    "dataValidade": "2027-07-13",
+    "valorVacina": 7000,
+    "estoqueVacina": 80
+  },
+  {
+    "codVacina": 7,
+    "nomeVacina": "Polivalente Canina V11",
+    "dataValidade": "2028-02-24",
+    "valorVacina": 18000,
+    "estoqueVacina": 9
+  },
+  {
+    "codVacina": 8,
+    "nomeVacina": "Polivalente Felina V3",
+    "dataValidade": "2029-09-08",
+    "valorVacina": 5000,
+    "estoqueVacina": 16
+  },
+  {
+    "codVacina": 9,
+    "nomeVacina": "Polivalente Felina V4",
+    "dataValidade": "2027-04-19",
+    "valorVacina": 11000,
+    "estoqueVacina": 34
+  },
+  {
+    "codVacina": 10,
+    "nomeVacina": "Polivalente Felina V5",
+    "dataValidade": "2028-11-03",
+    "valorVacina": 20500,
+    "estoqueVacina": 8
+  },
+  {
+    "codVacina": 11,
+    "nomeVacina": "Giardiase Canina",
+    "dataValidade": "2029-06-14",
+    "valorVacina": 22000,
+    "estoqueVacina": 30
+  },
+  {
+    "codVacina": 12,
+    "nomeVacina": "Tosse dos Canis - Bordetella",
+    "dataValidade": "2027-01-25",
+    "valorVacina": 25000,
+    "estoqueVacina": 74
+  },
+  {
+    "codVacina": 13,
+    "nomeVacina": "Tosse dos Canis - Parainfluenza",
+    "dataValidade": "2028-08-09",
+    "valorVacina": 17500,
+    "estoqueVacina": 33
+  },
+  {
+    "codVacina": 14,
+    "nomeVacina": "Leishmaniose Canina",
+    "dataValidade": "2029-03-20",
+    "valorVacina": 18500,
+    "estoqueVacina": 80
+  },
+  {
+    "codVacina": 15,
+    "nomeVacina": "Leptospirose Canina",
+    "dataValidade": "2027-10-04",
+    "valorVacina": 13000,
+    "estoqueVacina": 5
+  },
+  {
+    "codVacina": 16,
+    "nomeVacina": "Cinomose Canina",
+    "dataValidade": "2028-05-15",
+    "valorVacina": 9500,
+    "estoqueVacina": 59
+  },
+  {
+    "codVacina": 17,
+    "nomeVacina": "Parvovirose Canina",
+    "dataValidade": "2029-12-26",
+    "valorVacina": 15000,
+    "estoqueVacina": 40
+  },
+  {
+    "codVacina": 18,
+    "nomeVacina": "Hepatite Infecciosa Canina",
+    "dataValidade": "2027-07-10",
+    "valorVacina": 9000,
+    "estoqueVacina": 32
+  },
+  {
+    "codVacina": 19,
+    "nomeVacina": "Coronavirose Canina",
+    "dataValidade": "2028-02-21",
+    "valorVacina": 15000,
+    "estoqueVacina": 18
+  },
+  {
+    "codVacina": 20,
+    "nomeVacina": "Influenza Canina",
+    "dataValidade": "2029-09-05",
+    "valorVacina": 7000,
+    "estoqueVacina": 53
+  },
+  {
+    "codVacina": 21,
+    "nomeVacina": "Leucemia Felina (FeLV)",
+    "dataValidade": "2027-04-16",
+    "valorVacina": 7500,
+    "estoqueVacina": 50
+  },
+  {
+    "codVacina": 22,
+    "nomeVacina": "Panleucopenia Felina",
+    "dataValidade": "2028-11-27",
+    "valorVacina": 15500,
+    "estoqueVacina": 38
+  },
+  {
+    "codVacina": 23,
+    "nomeVacina": "Rinotraqueite Felina",
+    "dataValidade": "2029-06-11",
+    "valorVacina": 5500,
+    "estoqueVacina": 63
+  },
+  {
+    "codVacina": 24,
+    "nomeVacina": "Calicivirose Felina",
+    "dataValidade": "2027-01-22",
+    "valorVacina": 21500,
+    "estoqueVacina": 20
+  },
+  {
+    "codVacina": 25,
+    "nomeVacina": "Clamidiose Felina",
+    "dataValidade": "2028-08-06",
+    "valorVacina": 16500,
+    "estoqueVacina": 15
+  },
+  {
+    "codVacina": 26,
+    "nomeVacina": "Mixomatose de Coelhos",
+    "dataValidade": "2029-03-17",
+    "valorVacina": 22000,
+    "estoqueVacina": 42
+  },
+  {
+    "codVacina": 27,
+    "nomeVacina": "Doenca Hemorragica Viral de Coelhos",
+    "dataValidade": "2027-10-01",
+    "valorVacina": 24500,
+    "estoqueVacina": 51
+  },
+  {
+    "codVacina": 28,
+    "nomeVacina": "Raiva em Furões",
+    "dataValidade": "2028-05-12",
+    "valorVacina": 22500,
+    "estoqueVacina": 29
+  },
+  {
+    "codVacina": 29,
+    "nomeVacina": "Cinomose em Furões",
+    "dataValidade": "2029-12-23",
+    "valorVacina": 6500,
+    "estoqueVacina": 10
+  },
+  {
+    "codVacina": 30,
+    "nomeVacina": "Influenza Equina",
+    "dataValidade": "2027-07-07",
+    "valorVacina": 25500,
+    "estoqueVacina": 34
+  },
+  {
+    "codVacina": 31,
+    "nomeVacina": "Tetano Equino",
+    "dataValidade": "2028-02-18",
+    "valorVacina": 13500,
+    "estoqueVacina": 15
+  },
+  {
+    "codVacina": 32,
+    "nomeVacina": "Encefalomielite Equina",
+    "dataValidade": "2029-09-02",
+    "valorVacina": 11500,
+    "estoqueVacina": 17
+  },
+  {
+    "codVacina": 33,
+    "nomeVacina": "Raiva Equina",
+    "dataValidade": "2027-04-13",
+    "valorVacina": 16500,
+    "estoqueVacina": 40
+  },
+  {
+    "codVacina": 34,
+    "nomeVacina": "Rinopneumonite Equina",
+    "dataValidade": "2028-11-24",
+    "valorVacina": 19000,
+    "estoqueVacina": 51
+  },
+  {
+    "codVacina": 35,
+    "nomeVacina": "Adenite Equina",
+    "dataValidade": "2029-06-08",
+    "valorVacina": 9500,
+    "estoqueVacina": 52
+  },
+  {
+    "codVacina": 36,
+    "nomeVacina": "Rotavirus Equino",
+    "dataValidade": "2027-01-19",
+    "valorVacina": 15500,
+    "estoqueVacina": 31
+  },
+  {
+    "codVacina": 37,
+    "nomeVacina": "Leptospirose Equina",
+    "dataValidade": "2028-08-03",
+    "valorVacina": 25500,
+    "estoqueVacina": 39
+  },
+  {
+    "codVacina": 38,
+    "nomeVacina": "Herpesvirus Equino EHV-1",
+    "dataValidade": "2029-03-14",
+    "valorVacina": 26000,
+    "estoqueVacina": 14
+  },
+  {
+    "codVacina": 39,
+    "nomeVacina": "Herpesvirus Equino EHV-4",
+    "dataValidade": "2027-10-25",
+    "valorVacina": 23500,
+    "estoqueVacina": 26
+  },
+  {
+    "codVacina": 40,
+    "nomeVacina": "Botulismo Equino",
+    "dataValidade": "2028-05-09",
+    "valorVacina": 21500,
+    "estoqueVacina": 36
+  }
+]

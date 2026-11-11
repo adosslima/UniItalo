@@ -1,0 +1,26 @@
+[
+    {
+        "codPet": 1,
+        "codTutor": 1,
+        "codEspecie": 1,
+        "codRaca": 2,
+        "nomePet": "Thor",
+        "dataNascimento": "2026-06-03"
+    },
+    {
+        "codPet": 2,
+        "codTutor": 2,
+        "codEspecie": 1,
+        "codRaca": 1,
+        "nomePet": "Dragon",
+        "dataNascimento": "2026-06-03"
+    },
+    {
+        "codPet": 3,
+        "codTutor": 3,
+        "codEspecie": 1,
+        "codRaca": 1,
+        "nomePet": "Fenix",
+        "dataNascimento": "2026-06-03"
+    }
+]

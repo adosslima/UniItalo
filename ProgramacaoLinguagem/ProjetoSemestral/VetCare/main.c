@@ -5,6 +5,7 @@
 #include "tutor.h"
 #include "veterinario.h"
 #include "pet.h"
+#include "vacina.h"
 
 void menuCadastros(void)
 {
@@ -61,6 +62,46 @@ void menuCadastros(void)
     } while (opcao != 0);
 }
 
+void menuListegam(void)
+{
+    int opcao;
+
+    do
+    {
+        telaLimpar();
+        telaDesenharBox(0, 0, 80, 24);
+        telaEscreverCentralizado("MENU LISTAGENS", 0, 80, 3);
+
+        telaEscreverCentralizado("1 - Listar Pets          ", 0, 80, 5);
+        telaEscreverCentralizado("2 - Listar Vacinas       ", 0, 80, 6);
+        telaEscreverCentralizado("0 - Voltar               ", 0, 80, 7);
+
+        telaEscreverCentralizado("Escolha uma opcao: ", 0, 80, 16);
+        scanf("%d", &opcao);
+
+        switch (opcao)
+        {
+        case 1:
+            listarPets();
+            break;
+
+        case 2:
+            listarVacinas();
+            break;
+
+        case 0:
+            break;
+
+        default:
+            telaEscreverCentralizado("Opcao Invalida.", 0, 80, 22);
+            getchar();
+            getchar();
+            break;
+        }
+
+    } while (opcao != 0);
+}
+
 int main(void)
 {
     int opcao;
@@ -72,7 +113,7 @@ int main(void)
         telaEscreverCentralizado("MENU PRINCIPAL", 0, 80, 3);
 
         telaEscreverCentralizado("1 - Cadastrar             ", 0, 80, 5);
-        telaEscreverCentralizado("2 - Listar Pets           ", 0, 80, 6);
+        telaEscreverCentralizado("2 - Listagem              ", 0, 80, 6);
         telaEscreverCentralizado("3 - Pesquisar Pet         ", 0, 80, 7);
         telaEscreverCentralizado("4 - Registrar Atendimento ", 0, 80, 8);
         telaEscreverCentralizado("5 - Registrar Servico     ", 0, 80, 9);
@@ -91,7 +132,7 @@ int main(void)
             break;
 
         case 2:
-            listarPets();
+            menuListegam();
             break;
 
         case 9:
