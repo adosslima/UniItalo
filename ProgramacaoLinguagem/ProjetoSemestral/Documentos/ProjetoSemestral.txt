@@ -1,24 +1,3 @@
-
-
-1 - Cadastrar
-2 - Listar Pets
-3 - Pesquisar Pet
-4 - Registrar Atendimento
-5 - Registrar Serviço
-6 - Consultar Histórico
-7 - Relatório Atendimentos
-8 - Faturamento
-9 - Sair
-
-
-1.1 - Cadastrar Espécie
-1.2 - Cadastrar Raça
-1.3 - Cadastrar Tutor
-1.4 - Cadastrar Pet
-
-
-
-
 -- Especie.json
 codEspecie    INT
 nomeEspecie   CHAR(50)
@@ -62,17 +41,17 @@ nomeExame    CHAR(50)
 valorExame   INT64_T
 
 
--- ProgramacaoVacina
-codProgramacao     INT
-codVacina          INT
-codEspecie         INT
-nomeProgramacao    CHAR(50)
-tempoProgramacao   INT        -- Com quantos mêses aplica a vacina
-
-
 -- Atendimento.json
 codAtendimento    INT
 codVeterinario    INT
 codPet            INT
 dataAtendimento   CHAR(10)
+codVacina1        INT
+codVacina2        INT
+codVacina3        INT
+codVacina4        INT
+codExame1         INT
+codExame2         INT
+codExame3         INT
+codExame4         INT
 valorAtendimento  INT64_T
