@@ -1,0 +1,152 @@
+[
+   {
+      "codExame":1,
+      "nomeExame":"Hemograma completo",
+      "valorExame":8500
+   },
+   {
+      "codExame":2,
+      "nomeExame":"Hemograma com plaquetas",
+      "valorExame":9500
+   },
+   {
+      "codExame":3,
+      "nomeExame":"Ureia",
+      "valorExame":4500
+   },
+   {
+      "codExame":4,
+      "nomeExame":"Creatinina",
+      "valorExame":4500
+   },
+   {
+      "codExame":5,
+      "nomeExame":"ALT (TGP)",
+      "valorExame":5000
+   },
+   {
+      "codExame":6,
+      "nomeExame":"AST (TGO)",
+      "valorExame":5000
+   },
+   {
+      "codExame":7,
+      "nomeExame":"Fosfatase alcalina",
+      "valorExame":5500
+   },
+   {
+      "codExame":8,
+      "nomeExame":"Glicemia",
+      "valorExame":4000
+   },
+   {
+      "codExame":9,
+      "nomeExame":"Colesterol total",
+      "valorExame":4500
+   },
+   {
+      "codExame":10,
+      "nomeExame":"Triglicerideos",
+      "valorExame":4500
+   },
+   {
+      "codExame":11,
+      "nomeExame":"Albumina",
+      "valorExame":4500
+   },
+   {
+      "codExame":12,
+      "nomeExame":"Proteinas totais",
+      "valorExame":4500
+   },
+   {
+      "codExame":13,
+      "nomeExame":"Urina tipo I",
+      "valorExame":6500
+   },
+   {
+      "codExame":14,
+      "nomeExame":"Urocultura com antibiograma",
+      "valorExame":16000
+   },
+   {
+      "codExame":15,
+      "nomeExame":"Exame coproparasitologico",
+      "valorExame":6500
+   },
+   {
+      "codExame":16,
+      "nomeExame":"Pesquisa de Giardia",
+      "valorExame":9000
+   },
+   {
+      "codExame":17,
+      "nomeExame":"Teste rapido para cinomose",
+      "valorExame":11000
+   },
+   {
+      "codExame":18,
+      "nomeExame":"Teste rapido para parvovirose",
+      "valorExame":11000
+   },
+   {
+      "codExame":19,
+      "nomeExame":"Teste rapido FIV/FeLV",
+      "valorExame":15000
+   },
+   {
+      "codExame":20,
+      "nomeExame":"Sorologia para leishmaniose",
+      "valorExame":14000
+   },
+   {
+      "codExame":21,
+      "nomeExame":"Citologia de pele",
+      "valorExame":9500
+   },
+   {
+      "codExame":22,
+      "nomeExame":"Citologia otologica",
+      "valorExame":8500
+   },
+   {
+      "codExame":23,
+      "nomeExame":"Raspado cutaneo",
+      "valorExame":7500
+   },
+   {
+      "codExame":24,
+      "nomeExame":"Cultura fungica",
+      "valorExame":15000
+   },
+   {
+      "codExame":25,
+      "nomeExame":"Ultrassonografia abdominal",
+      "valorExame":22000
+   },
+   {
+      "codExame":26,
+      "nomeExame":"Radiografia toracica",
+      "valorExame":18000
+   },
+   {
+      "codExame":27,
+      "nomeExame":"Ecocardiograma",
+      "valorExame":28000
+   },
+   {
+      "codExame":28,
+      "nomeExame":"Eletrocardiograma",
+      "valorExame":16000
+   },
+   {
+      "codExame":29,
+      "nomeExame":"Dosagem de T4 total",
+      "valorExame":14000
+   },
+   {
+      "codExame":30,
+      "nomeExame":"Coagulograma",
+      "valorExame":14000
+   }
+]

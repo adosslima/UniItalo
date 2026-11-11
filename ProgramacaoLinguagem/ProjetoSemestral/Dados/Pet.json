@@ -22,5 +22,29 @@
         "codRaca": 1,
         "nomePet": "Fenix",
         "dataNascimento": "2026-06-03"
+    },
+    {
+        "codPet": 4,
+        "codTutor": 3,
+        "codEspecie": 1,
+        "codRaca": 1,
+        "nomePet": "Snoopy Bala",
+        "dataNascimento": "1980-09-01"
+    },
+    {
+        "codPet": 5,
+        "codTutor": 3,
+        "codEspecie": 1,
+        "codRaca": 1,
+        "nomePet": "Bala Snoopy",
+        "dataNascimento": "1977-09-01"
+    },
+    {
+        "codPet": 6,
+        "codTutor": 3,
+        "codEspecie": 1,
+        "codRaca": 1,
+        "nomePet": "Thorzinho",
+        "dataNascimento": "2026-09-01"
     }
 ]

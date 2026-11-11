@@ -6,6 +6,7 @@
 #include "veterinario.h"
 #include "pet.h"
 #include "vacina.h"
+#include "exame.h"
 
 void menuCadastros(void)
 {
@@ -74,7 +75,8 @@ void menuListegam(void)
 
         telaEscreverCentralizado("1 - Listar Pets          ", 0, 80, 5);
         telaEscreverCentralizado("2 - Listar Vacinas       ", 0, 80, 6);
-        telaEscreverCentralizado("0 - Voltar               ", 0, 80, 7);
+        telaEscreverCentralizado("3 - Listar Exames        ", 0, 80, 7);
+        telaEscreverCentralizado("0 - Voltar               ", 0, 80, 8);
 
         telaEscreverCentralizado("Escolha uma opcao: ", 0, 80, 16);
         scanf("%d", &opcao);
@@ -87,6 +89,10 @@ void menuListegam(void)
 
         case 2:
             listarVacinas();
+            break;
+
+        case 3:
+            listarExames();
             break;
 
         case 0:
@@ -133,6 +139,10 @@ int main(void)
 
         case 2:
             menuListegam();
+            break;
+
+        case 3:
+            pesquisarPets();
             break;
 
         case 9:

@@ -48,14 +48,6 @@ nomePet          CHAR(50)
 dataNascimento   CHAR(10
 
 
--- Atendimento.json
-codAtendimento    INT
-codVeterinario    INT
-codPet            INT
-dataAtendimento   CHAR(10)
-valorAtendimento  INT64_T
-
-
 -- Vacina.json
 codVacina       INT
 nomeVacina      CHAR(50)
@@ -64,9 +56,23 @@ valorVacina     INT64_T
 estoqueVacina   INT
 
 
+-- Exame.json
+codExame     INT
+nomeExame    CHAR(50)
+valorExame   INT64_T
+
+
 -- ProgramacaoVacina
 codProgramacao     INT
 codVacina          INT
 codEspecie         INT
 nomeProgramacao    CHAR(50)
 tempoProgramacao   INT        -- Com quantos mêses aplica a vacina
+
+
+-- Atendimento.json
+codAtendimento    INT
+codVeterinario    INT
+codPet            INT
+dataAtendimento   CHAR(10)
+valorAtendimento  INT64_T

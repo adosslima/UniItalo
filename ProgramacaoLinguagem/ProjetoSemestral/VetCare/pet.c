@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <windows.h>
 #include "data.h"
 #include "pet.h"
 #include "tela.h"
@@ -443,6 +444,142 @@ void listarPets(void)
         printf("=");
 
     printf("+");
+
+    getchar();
+    getchar();
+}
+
+/*
+---------------------------------
+Função Pesquisar
+---------------------------------
+*/
+void pesquisarPets(void)
+{
+    SetConsoleOutputCP(437);
+
+    carregarPets();
+
+    char codigo[10];
+    char nome[50];
+    char nomeValido[50];
+    char nomePesquisa[50];
+
+    int linha = 0;
+    int largura = 100;
+
+    telaLimpar();
+    telaDesenharBox(0, 0, 80, 24);
+    telaEscreverCentralizado("PESQUISA DE PETS", 0, 80, 3);
+
+    telaEscrever(10, 10, "Nome da Pet: ");
+    scanf(" %49[^\n]", nomePesquisa);
+
+    telaLimpar();
+
+    // Primeira linha do box
+    printf("%c", 201); // ╔
+    for (int i = 0; i < largura - 2; i++)
+        printf("%c", 205); // ═
+    printf("%c", 187);     // ╗
+
+    // Segunda linha do box com header
+    linha++;
+    telaPosicionarCursor(0, linha);
+    printf("%c", 186); // ║
+    telaEscreverCentralizado("VETCARE - SISTEMA DE GESTAO", 0, 92, linha);
+    telaPosicionarCursor(0 + largura - 1, linha);
+    printf("%c", 186); // ║
+
+    // Terceira linha do box com traço duplo e conectores
+    linha++;
+    telaPosicionarCursor(0, linha);
+    printf("%c", 204); // ╠
+    for (int i = 0; i < largura - 2; i++)
+        printf("%c", 205); // ═
+    printf("%c", 185);     // ╣
+
+    // Quarta linha do box com título
+    linha++;
+    telaPosicionarCursor(0, linha);
+    printf("%c", 186); // ║
+    telaEscreverCentralizado("PESQUISA DE PETS", 0, 92, linha);
+    telaPosicionarCursor(0 + largura - 1, linha);
+    printf("%c", 186); // ║
+
+    // Quinta linha do box
+    linha++;
+    telaPosicionarCursor(0, linha);
+    printf("%c", 186); // ║
+    telaPosicionarCursor(0 + largura - 1, linha);
+    printf("%c", 186); // ║
+
+    // Sexta linha do box
+    linha++;
+    telaPosicionarCursor(0, linha);
+    printf("%c", 186); // ║
+    telaPosicionarCursor(0 + largura - 1, linha);
+    printf("%c", 186); // ║
+
+    // Sétima linha do box
+    linha++;
+    telaPosicionarCursor(0, linha);
+    printf("%c", 186); // ║
+    telaPosicionarCursor(0 + largura - 1, linha);
+    printf("%c", 186); // ║
+
+    telaEscrever(1, linha, "CODIGO");
+    telaEscrever(8, linha, "NOME");
+    telaEscrever(29, linha, "ESPECIE");
+    telaEscrever(50, linha, "RACA");
+    telaEscrever(71, linha, "TUTOR");
+
+    // Oitava linha do box com traço duplo e conectores
+    linha++;
+    telaPosicionarCursor(0, linha);
+    printf("%c", 186); // ║
+    for (int i = 0; i < largura - 2; i++)
+        printf("%c", 196); // ─
+    printf("%c", 186);     // ║
+
+    linha++;
+
+    for (int i = 0; i < totalPets; i++)
+    {
+        telaPosicionarCursor(0, linha);
+        printf("%c", 186); // ║
+        for (int i = 0; i < largura - 2; i++)
+            printf(" ");
+        printf("%c", 186); // ║
+
+        if (strstr(pets[i].nomePet, nomePesquisa) != NULL)
+        {
+            snprintf(codigo, sizeof(codigo), "%d", pets[i].codPet);
+
+            telaEscrever(1, linha, codigo);
+            telaEscrever(8, linha, pets[i].nomePet);
+
+            validarEspecie(pets[i].codEspecie, nomeValido);
+            strncpy(nome, nomeValido, 20);
+            telaEscrever(29, linha, nome);
+
+            validarRaca(pets[i].codRaca, nomeValido);
+            strncpy(nome, nomeValido, 20);
+            telaEscrever(50, linha, nome);
+
+            validarTutor(pets[i].codTutor, nomeValido);
+            strncpy(nome, nomeValido, 20);
+            telaEscrever(71, linha, nome);
+            linha++;
+        }
+    }
+
+    // Última linha
+    telaPosicionarCursor(0, linha);
+    printf("%c", 200); // ╚
+    for (int i = 0; i < largura - 2; i++)
+        printf("%c", 205); // ═
+    printf("%c", 188);     // ╝
 
     getchar();
     getchar();
