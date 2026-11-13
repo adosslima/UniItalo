@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <string.h>
-#include "exame.h"
+#include <stdint.h>
+#include <inttypes.h>
 #include "tela.h"
+#include "exame.h"
 
 #define ARQUIVO_EXAMES "C:\\VetCare\\Dados\\Exame.json"
 
@@ -60,7 +62,7 @@ static void carregarExames(void)
 
         if (strstr(linha, "\"valorExame\"") != NULL)
         {
-            sscanf(linha, " \"valorExame\": %d", &exame.valorExame);
+            sscanf(linha, " \"valorExame\": %" SCNd64, &exame.valorExame);
 
             if (totalExames < MAX_EXAMES)
             {
@@ -75,6 +77,45 @@ static void carregarExames(void)
     }
 
     fclose(arquivo);
+}
+
+/*
+---------------------------------
+Função Buscar Indice
+---------------------------------
+*/
+static int buscarIndice(int codigo)
+{
+    for (int i = 0; i < totalExames; i++)
+    {
+        if (exames[i].codExame == codigo)
+            return i;
+    }
+    return -1;
+}
+
+/*
+---------------------------------
+Função Pública Validar Exame
+---------------------------------
+*/
+int validarExame(int codigo, char *nome, int64_t *valorExame)
+{
+    carregarExames();
+
+    int indice = buscarIndice(codigo);
+
+    if (indice == -1)
+    {
+        nome[0] = '\0';
+        valorExame = 0;
+        return 0;
+    }
+
+    strcpy(nome, exames[indice].nomeExame);
+    *valorExame = exames[indice].valorExame;
+
+    return 1;
 }
 
 /*
@@ -142,7 +183,7 @@ void listarExames(void)
     {
         telaEscrever(0, linha, "|");
         snprintf(codigo, sizeof(codigo), "%d", exames[i].codExame);
-        snprintf(valor, sizeof(valor), "%d", exames[i].valorExame);
+        snprintf(valor, sizeof(valor), "%" PRId64, exames[i].valorExame);
 
         telaEscrever(1, linha, codigo);
         telaEscrever(8, linha, exames[i].nomeExame);

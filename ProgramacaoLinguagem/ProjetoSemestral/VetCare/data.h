@@ -5,5 +5,4 @@ typedef struct
     int ano;
 } Data;
 
-
-char *dataJSonToDataSystem(const char dataJSon[11]);
+Data obterDataAtual(void);

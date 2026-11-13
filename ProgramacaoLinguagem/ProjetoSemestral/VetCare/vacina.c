@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <inttypes.h>
 #include "vacina.h"
 #include "tela.h"
 
@@ -84,7 +85,7 @@ static void carregarVacinas(void)
 
         if (strstr(linha, "\"valorVacina\"") != NULL)
         {
-            sscanf(linha, " \"valorVacina\": %d", &vacina.valorVacina);
+            sscanf(linha, " \"valorVacina\": %" SCNd64, &vacina.valorVacina);
         }
 
         if (strstr(linha, "\"estoqueVacina\"") != NULL)
@@ -104,6 +105,45 @@ static void carregarVacinas(void)
     }
 
     fclose(arquivo);
+}
+
+/*
+---------------------------------
+Função Buscar Indice
+---------------------------------
+*/
+static int buscarIndice(int codigo)
+{
+    for (int i = 0; i < totalVacinas; i++)
+    {
+        if (vacinas[i].codVacina == codigo)
+            return i;
+    }
+    return -1;
+}
+
+/*
+---------------------------------
+Função Pública Validar Vacina
+---------------------------------
+*/
+int validarVacina(int codigo, char *nome, int64_t *valorVacina)
+{
+    carregarVacinas();
+
+    int indice = buscarIndice(codigo);
+
+    if (indice == -1)
+    {
+        nome[0] = '\0';
+        valorVacina = 0;
+        return 0;
+    }
+
+    strcpy(nome, vacinas[indice].nomeVacina);
+    *valorVacina = vacinas[indice].valorVacina;
+
+    return 1;
 }
 
 /*
@@ -174,7 +214,7 @@ void listarVacinas(void)
     {
         telaEscrever(0, linha, "|");
         snprintf(codigo, sizeof(codigo), "%d", vacinas[i].codVacina);
-        snprintf(valor, sizeof(valor), "%d", vacinas[i].valorVacina);
+        snprintf(valor, sizeof(valor), "%" PRId64, vacinas[i].valorVacina);
         snprintf(estoque, sizeof(estoque), "%d", vacinas[i].estoqueVacina);
 
         telaEscrever(1, linha, codigo);

@@ -360,6 +360,28 @@ static void carregarVeterinarios(void)
 
 /*
 ---------------------------------
+Função Pública Validar Veterinário
+---------------------------------
+*/
+int validarVeterinario(int codigo, char *nome)
+{
+    carregarVeterinarios();
+
+    int indice = buscarIndice(codigo);
+
+    if (indice == -1)
+    {
+        nome[0] = '\0';
+        return 0;
+    }
+
+    strcpy(nome, veterinarios[indice].nomeVeterinario);
+
+    return 1;
+}
+
+/*
+---------------------------------
  Função Menu
 ---------------------------------
 */

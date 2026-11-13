@@ -7,6 +7,7 @@
 #include "pet.h"
 #include "vacina.h"
 #include "exame.h"
+#include "atendimento.h"
 
 void menuCadastros(void)
 {
@@ -143,6 +144,10 @@ int main(void)
 
         case 3:
             pesquisarPets();
+            break;
+
+        case 4:
+            incluirAtendimento();
             break;
 
         case 9:

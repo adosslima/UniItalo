@@ -15,3 +15,4 @@ typedef struct
 void menuPets(void);
 void listarPets(void);
 void pesquisarPets(void);
+int validarPet(int codigo, char *nome);

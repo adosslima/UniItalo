@@ -587,6 +587,28 @@ void pesquisarPets(void)
 
 /*
 ---------------------------------
+Função Pública Validar Pet
+---------------------------------
+*/
+int validarPet(int codigo, char *nome)
+{
+    carregarPets();
+
+    int indice = buscarIndice(codigo);
+
+    if (indice == -1)
+    {
+        nome[0] = '\0';
+        return 0;
+    }
+
+    strcpy(nome, pets[indice].nomePet);
+
+    return 1;
+}
+
+/*
+---------------------------------
  Função Menu
 ---------------------------------
 */

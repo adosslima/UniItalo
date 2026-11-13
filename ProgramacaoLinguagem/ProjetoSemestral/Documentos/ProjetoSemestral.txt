@@ -55,3 +55,37 @@ codExame2         INT
 codExame3         INT
 codExame4         INT
 valorAtendimento  INT64_T
+ValorTotal        INT64_T
+
+
+
+
+
+
+
+         1         2         3         4         5         6         7         8
+12345678901234567890123456789012345678901234567890123456789012345678901234567890
+0                                                                              |
+1                                                                              |
+2                                                                              |
+3                                Atendimento                                   |
+4                                                                              |
+5 Cod.Atendimento: 99                Cod.Veterinario: 99-12345678901234567890
+6 Dat.Atendimento: 9999-99-99        Cod.Tutor......: 99-12345678901234567890
+7                                    Cod.Pet........: 99-12345678901234567890
+8
+9 Cod.Exame: 99-12345678901234567890      Cod.Vacina: 99-12345678901234567890
+0 Cod.Exame: 99-12345678901234567890      Cod.Vacina: 99-12345678901234567890
+1 Cod.Exame: 99-12345678901234567890      Cod.Vacina: 99-12345678901234567890
+2 Cod.Exame: 99-12345678901234567890      Cod.Vacina: 99-12345678901234567890  
+3
+4
+5                                             Valor Atendimento: R$ 99.999,99
+6                                             Valor Exames.....: R$ 99.999,99
+7                                             Valor Vacinas....: R$ 99.999,99
+8											  Valor Total......: R$ 99.999,99
+9                                                                              |
+0                                                                              |
+                                                                               |
+                                                                               |
+                                                                               |

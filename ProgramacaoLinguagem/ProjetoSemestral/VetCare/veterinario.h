@@ -9,3 +9,4 @@ typedef struct
 } Veterinario;
 
 void menuVeterinarios(void);
+int validarVeterinario(int codigo, char *nome);
