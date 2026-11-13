@@ -1,0 +1,10 @@
+[
+    {
+        "qtdAtendimento": 3,
+        "valAtendimento": 45000,
+        "qtdVacina": 5,
+        "valVacima": 50000,
+        "qtdExame": 5,
+        "valExame": 27000,
+    }
+]
