@@ -58,9 +58,13 @@ valorAtendimento  INT64_T
 ValorTotal        INT64_T
 
 
-
-
-
+-- Dashboard
+QtdAtendimento   INT
+ValAtendimento   INT64_T
+QtdVacina        INT
+ValVacina        INT64_T
+QdtExame         INT
+ValExame         INT64_T
 
 
          1         2         3         4         5         6         7         8

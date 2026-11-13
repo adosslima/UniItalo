@@ -12,8 +12,10 @@
 #include "exame.h"
 #include "vacina.h"
 #include "veterinario.h"
+#include "dashboard.h"
 
 #define ARQUIVO_ATENDIMENTOS "C:\\VetCare\\Dados\\Atendimento.json"
+#define ARQUIVO_DASHBOARD "C:\\VetCare\\Dados\\DashBoard.json"
 
 static Atendimento atendimentos[MAX_ATENDIMENTOS];
 static int totalAtendimentos = 0;
@@ -95,6 +97,76 @@ static void salvarAtendimentos(void)
                 i < totalAtendimentos - 1 ? "," : "");
     }
 
+    fprintf(arquivo, "]\n");
+    fclose(arquivo);
+}
+
+/*
+---------------------------------
+ Função SALVAR DASHBOARD
+---------------------------------
+*/
+static void salvarDashBoard(void)
+{
+    FILE *arquivo = fopen(ARQUIVO_DASHBOARD, "w");
+
+    if (arquivo == NULL)
+    {
+        telaEscreverCentralizado("Erro ao abrir o arquivo JSON!", 0, 50, 22);
+        getchar();
+        return;
+    }
+
+    int qtdAtendimento = 0;
+    int64_t valAtendimento = 0;
+    int qtdVacina = 0;
+    int64_t valVacina = 0;
+    int qtdExame = 0;
+    int64_t valExame = 0;
+
+    for (int i = 0; i < totalAtendimentos; i++)
+    {
+        qtdAtendimento++;
+        valAtendimento += atendimentos[i].valAtendimento;
+        valVacina += atendimentos[i].totVacina;
+        valExame += atendimentos[i].totExame;
+
+        if (atendimentos[i].codExame1 > 0)
+            qtdExame++;
+        if (atendimentos[i].codExame2 > 0)
+            qtdExame++;
+        if (atendimentos[i].codExame3 > 0)
+            qtdExame++;
+        if (atendimentos[i].codExame4 > 0)
+            qtdExame++;
+
+        if (atendimentos[i].codVacina1 > 0)
+            qtdVacina++;
+        if (atendimentos[i].codVacina2 > 0)
+            qtdVacina++;
+        if (atendimentos[i].codVacina3 > 0)
+            qtdVacina++;
+        if (atendimentos[i].codVacina4 > 0)
+            qtdVacina++;
+    }
+
+    fprintf(arquivo, "[\n");
+        fprintf(arquivo,
+                "    {\n"
+                "        \"qtdAtendimento\": %d,\n"
+                "        \"valAtendimento\": %" PRId64 ",\n"
+                "        \"qtdVacina\": %d,\n"
+                "        \"valVacima\": %" PRId64 ",\n"
+                "        \"qtdExame\": %d,\n"
+                "        \"valExame\": %" PRId64 ",\n"
+                "    }%s\n",
+                qtdAtendimento,
+                valAtendimento,
+                qtdVacina,
+                valVacina,
+                qtdExame,
+                valExame,
+                "");
     fprintf(arquivo, "]\n");
     fclose(arquivo);
 }
@@ -243,14 +315,14 @@ static void carregarAtendimentos(void)
             sscanf(linha, " \"valExame4\": %" PRId64, &atendimento.valExame4);
         }
 
-        if (strstr(linha, "\"totAtendimento\"") != NULL)
-        {
-            sscanf(linha, " \"totAtendimento\": %" PRId64, &atendimento.totAtendimento);
-        }
-
         if (strstr(linha, "\"valAtendimento\"") != NULL)
         {
             sscanf(linha, " \"valAtendimento\": %" PRId64, &atendimento.valAtendimento);
+        }
+
+        if (strstr(linha, "\"totAtendimento\"") != NULL)
+        {
+            sscanf(linha, " \"totAtendimento\": %" PRId64, &atendimento.totAtendimento);
 
             if (totalAtendimentos < MAX_ATENDIMENTOS)
             {
@@ -570,6 +642,7 @@ void incluirAtendimento(void)
     proximoCodigo++;
 
     salvarAtendimentos();
+    salvarDashBoard();
 
     telaEscreverCentralizado("Atendimento cadastrado!", 0, 80, 22);
     getchar();
