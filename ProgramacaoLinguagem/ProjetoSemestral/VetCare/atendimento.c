@@ -354,6 +354,8 @@ Função Incluir
 */
 void incluirAtendimento(void)
 {
+    carregarAtendimentos();
+
     Atendimento nova = {0};
     Data hoje = obterDataAtual();
 
@@ -389,8 +391,6 @@ void incluirAtendimento(void)
         hoje.ano,
         hoje.mes,
         hoje.dia);
-
-    carregarAtendimentos();
 
     telaLimpar();
     telaDesenharBox(0, 0, 85, 24);

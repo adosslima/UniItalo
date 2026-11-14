@@ -9,6 +9,7 @@
 #include "exame.h"
 #include "atendimento.h"
 #include "servico.h"
+#include "historico.h"
 
 void menuCadastros(void)
 {
@@ -153,6 +154,10 @@ int main(void)
 
         case 5:
             incluirServico();
+            break;
+
+        case 6:
+            consultarHistorico();
             break;
 
         case 9:

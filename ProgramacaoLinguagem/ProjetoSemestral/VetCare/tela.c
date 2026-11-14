@@ -43,6 +43,13 @@ void telaEscrever(int x, int y, const char *texto)
     printf("%s", texto);
 }
 
+void telaEscreverInt(int x, int y, const int valor)
+{
+    telaPosicionarCursor(x, y);
+    printf("%d", valor);
+}
+
+
 void telaDesenharBox(
     int x,
     int y,
