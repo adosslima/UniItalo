@@ -1,10 +1,10 @@
 [
     {
-        "qtdAtendimento": 3,
-        "valAtendimento": 45000,
-        "qtdVacina": 5,
-        "valVacima": 50000,
+        "qtdAtendimento": 4,
+        "valAtendimento": 60000,
+        "qtdVacina": 6,
+        "valVacima": 79500,
         "qtdExame": 5,
-        "valExame": 27000,
+        "valExame": 35500,
     }
 ]

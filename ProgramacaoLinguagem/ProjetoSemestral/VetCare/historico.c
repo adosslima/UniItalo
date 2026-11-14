@@ -1,12 +1,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <windows.h>
-#include "data.h"
 #include "pet.h"
 #include "tela.h"
-#include "tutor.h"
-#include "especie.h"
-#include "raca.h"
 #include "veterinario.h"
 #include "exame.h"
 #include "vacina.h"
@@ -15,7 +11,10 @@
 #define ARQUIVO_ATENDIMENTOS "C:\\VetCare\\Dados\\Atendimento.json"
 
 /*
- */
+---------------------------------
+Função Consultar
+---------------------------------
+*/
 void consultarHistorico(void)
 {
     SetConsoleOutputCP(437);
