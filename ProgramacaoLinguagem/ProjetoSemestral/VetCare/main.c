@@ -8,6 +8,7 @@
 #include "vacina.h"
 #include "exame.h"
 #include "atendimento.h"
+#include "servico.h"
 
 void menuCadastros(void)
 {
@@ -148,6 +149,10 @@ int main(void)
 
         case 4:
             incluirAtendimento();
+            break;
+
+        case 5:
+            incluirServico();
             break;
 
         case 9:

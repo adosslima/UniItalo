@@ -32,4 +32,10 @@ typedef struct
     int64_t totAtendimento;
 } Atendimento;
 
+extern int totalAtendimentos;
+extern Atendimento atendimentos[MAX_ATENDIMENTOS];
+
+void carregarAtendimentos(void);
 void incluirAtendimento(void);
+void salvarAtendimentos(void);
+void salvarDashBoard(void);

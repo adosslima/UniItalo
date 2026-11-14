@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <string.h>
-#include <windows.h>
 #include <stdint.h>
 #include <inttypes.h>
 #include "atendimento.h"
@@ -12,13 +11,12 @@
 #include "exame.h"
 #include "vacina.h"
 #include "veterinario.h"
-#include "dashboard.h"
 
 #define ARQUIVO_ATENDIMENTOS "C:\\VetCare\\Dados\\Atendimento.json"
 #define ARQUIVO_DASHBOARD "C:\\VetCare\\Dados\\DashBoard.json"
 
-static Atendimento atendimentos[MAX_ATENDIMENTOS];
-static int totalAtendimentos = 0;
+Atendimento atendimentos[MAX_ATENDIMENTOS];
+int totalAtendimentos = 0;
 static int proximoCodigo = 1;
 
 /*
@@ -26,13 +24,13 @@ static int proximoCodigo = 1;
  Função SALVAR
 ---------------------------------
 */
-static void salvarAtendimentos(void)
+void salvarAtendimentos(void)
 {
     FILE *arquivo = fopen(ARQUIVO_ATENDIMENTOS, "w");
 
     if (arquivo == NULL)
     {
-        telaEscreverCentralizado("Erro ao abrir o arquivo JSON!", 0, 50, 22);
+        telaEscreverCentralizado("Erro ao abrir o arquivo JSON!", 0, 85, 22);
         getchar();
         return;
     }
@@ -47,7 +45,7 @@ static void salvarAtendimentos(void)
                 "        \"codVeterinario\": %d,\n"
                 "        \"codTutor\": %d,\n"
                 "        \"codPet\": %d,\n"
-                "        \"dataAtendimento\": \"%s\"\n"
+                "        \"dataAtendimento\": \"%s\",\n"
                 "        \"codVacina1\": %d,\n"
                 "        \"codVacina2\": %d,\n"
                 "        \"codVacina3\": %d,\n"
@@ -67,7 +65,7 @@ static void salvarAtendimentos(void)
                 "        \"valExame4\": %" PRId64 ",\n"
                 "        \"totExame\": %" PRId64 ",\n"
                 "        \"valAtendimento\": %" PRId64 ",\n"
-                "        \"totAtendimento\": %" PRId64 ",\n"
+                "        \"totAtendimento\": %" PRId64 "\n"
                 "    }%s\n",
                 atendimentos[i].codAtendimento,
                 atendimentos[i].codVeterinario,
@@ -106,13 +104,13 @@ static void salvarAtendimentos(void)
  Função SALVAR DASHBOARD
 ---------------------------------
 */
-static void salvarDashBoard(void)
+void salvarDashBoard(void)
 {
     FILE *arquivo = fopen(ARQUIVO_DASHBOARD, "w");
 
     if (arquivo == NULL)
     {
-        telaEscreverCentralizado("Erro ao abrir o arquivo JSON!", 0, 50, 22);
+        telaEscreverCentralizado("Erro ao abrir o arquivo JSON!", 0, 85, 22);
         getchar();
         return;
     }
@@ -151,22 +149,22 @@ static void salvarDashBoard(void)
     }
 
     fprintf(arquivo, "[\n");
-        fprintf(arquivo,
-                "    {\n"
-                "        \"qtdAtendimento\": %d,\n"
-                "        \"valAtendimento\": %" PRId64 ",\n"
-                "        \"qtdVacina\": %d,\n"
-                "        \"valVacima\": %" PRId64 ",\n"
-                "        \"qtdExame\": %d,\n"
-                "        \"valExame\": %" PRId64 ",\n"
-                "    }%s\n",
-                qtdAtendimento,
-                valAtendimento,
-                qtdVacina,
-                valVacina,
-                qtdExame,
-                valExame,
-                "");
+    fprintf(arquivo,
+            "    {\n"
+            "        \"qtdAtendimento\": %d,\n"
+            "        \"valAtendimento\": %" PRId64 ",\n"
+            "        \"qtdVacina\": %d,\n"
+            "        \"valVacima\": %" PRId64 ",\n"
+            "        \"qtdExame\": %d,\n"
+            "        \"valExame\": %" PRId64 ",\n"
+            "    }%s\n",
+            qtdAtendimento,
+            valAtendimento,
+            qtdVacina,
+            valVacina,
+            qtdExame,
+            valExame,
+            "");
     fprintf(arquivo, "]\n");
     fclose(arquivo);
 }
@@ -176,7 +174,7 @@ static void salvarDashBoard(void)
 Função Carregar
 ---------------------------------
 */
-static void carregarAtendimentos(void)
+void carregarAtendimentos(void)
 {
     FILE *arquivo = fopen(ARQUIVO_ATENDIMENTOS, "r");
 
@@ -275,6 +273,11 @@ static void carregarAtendimentos(void)
             sscanf(linha, " \"valVacina4\": %" PRId64, &atendimento.valVacina4);
         }
 
+        if (strstr(linha, "\"totVacina\"") != NULL)
+        {
+            sscanf(linha, " \"totVacina\": %" PRId64, &atendimento.totVacina);
+        }
+
         if (strstr(linha, "\"codExame1\"") != NULL)
         {
             sscanf(linha, " \"codExame1\": %d", &atendimento.codExame1);
@@ -315,6 +318,11 @@ static void carregarAtendimentos(void)
             sscanf(linha, " \"valExame4\": %" PRId64, &atendimento.valExame4);
         }
 
+        if (strstr(linha, "\"totExame\"") != NULL)
+        {
+            sscanf(linha, " \"totExame\": %" PRId64, &atendimento.totExame);
+        }
+
         if (strstr(linha, "\"valAtendimento\"") != NULL)
         {
             sscanf(linha, " \"valAtendimento\": %" PRId64, &atendimento.valAtendimento);
@@ -350,6 +358,7 @@ void incluirAtendimento(void)
     Data hoje = obterDataAtual();
 
     char nomeValido[50] = {0};
+    char nomeImpresso[20] = {0};
 
     int64_t valorExame1 = 0;
     int64_t valorExame2 = 0;
@@ -385,7 +394,7 @@ void incluirAtendimento(void)
 
     telaLimpar();
     telaDesenharBox(0, 0, 85, 24);
-    telaEscreverCentralizado("ATENDIMENTOS - Inclusao", 0, 80, 3);
+    telaEscreverCentralizado("ATENDIMENTOS - Inclusao", 0, 85, 3);
 
     telaEscrever(3, 5, "Cod.Atendimento: ");
     printf("%d", nova.codAtendimento);
@@ -422,9 +431,13 @@ void incluirAtendimento(void)
 
         telaEscrever(38, 5, "Cod.Veterinario: ");
         scanf("%d", &nova.codVeterinario);
-    } while (validarVeterinario(nova.codVeterinario, nomeValido) == 0);
+    } while (nova.codVeterinario > 0 && validarVeterinario(nova.codVeterinario, nomeValido) == 0);
 
-    telaEscrever(58, 5, nomeValido);
+    if (nova.codVeterinario == 0)
+        return;
+
+    strncpy(nomeImpresso, nomeValido, 20);
+    telaEscrever(58, 5, nomeImpresso);
 
     // Tutor
     do
@@ -435,7 +448,8 @@ void incluirAtendimento(void)
         scanf("%d", &nova.codTutor);
     } while (validarTutor(nova.codTutor, nomeValido) == 0);
 
-    telaEscrever(58, 6, nomeValido);
+    strncpy(nomeImpresso, nomeValido, 20);
+    telaEscrever(58, 6, nomeImpresso);
 
     // Pet
     do
@@ -446,7 +460,8 @@ void incluirAtendimento(void)
         scanf("%d", &nova.codPet);
     } while (validarPet(nova.codPet, nomeValido) == 0);
 
-    telaEscrever(58, 7, nomeValido);
+    strncpy(nomeImpresso, nomeValido, 20);
+    telaEscrever(58, 7, nomeImpresso);
 
     // Exame 1
     do
@@ -464,7 +479,8 @@ void incluirAtendimento(void)
     }
     else
     {
-        telaEscrever(17, 9, nomeValido);
+        strncpy(nomeImpresso, nomeValido, 20);
+        telaEscrever(17, 9, nomeImpresso);
     }
 
     // Exame 2
@@ -483,7 +499,8 @@ void incluirAtendimento(void)
     }
     else
     {
-        telaEscrever(17, 10, nomeValido);
+        strncpy(nomeImpresso, nomeValido, 20);
+        telaEscrever(17, 10, nomeImpresso);
     }
 
     // Exame 3
@@ -502,7 +519,8 @@ void incluirAtendimento(void)
     }
     else
     {
-        telaEscrever(17, 11, nomeValido);
+        strncpy(nomeImpresso, nomeValido, 20);
+        telaEscrever(17, 11, nomeImpresso);
     }
 
     // Exame 4
@@ -521,7 +539,8 @@ void incluirAtendimento(void)
     }
     else
     {
-        telaEscrever(17, 12, nomeValido);
+        strncpy(nomeImpresso, nomeValido, 20);
+        telaEscrever(17, 12, nomeImpresso);
     }
 
     totalExames = valorExame1 + valorExame2 + valorExame3 + valorExame4;
@@ -548,7 +567,8 @@ void incluirAtendimento(void)
     }
     else
     {
-        telaEscrever(58, 9, nomeValido);
+        strncpy(nomeImpresso, nomeValido, 20);
+        telaEscrever(58, 9, nomeImpresso);
     }
 
     // Vacina 2
@@ -567,7 +587,8 @@ void incluirAtendimento(void)
     }
     else
     {
-        telaEscrever(58, 10, nomeValido);
+        strncpy(nomeImpresso, nomeValido, 20);
+        telaEscrever(58, 10, nomeImpresso);
     }
 
     // Vacina 3
@@ -586,7 +607,8 @@ void incluirAtendimento(void)
     }
     else
     {
-        telaEscrever(58, 11, nomeValido);
+        strncpy(nomeImpresso, nomeValido, 20);
+        telaEscrever(58, 11, nomeImpresso);
     }
 
     // Vacina 4
@@ -605,7 +627,8 @@ void incluirAtendimento(void)
     }
     else
     {
-        telaEscrever(58, 12, nomeValido);
+        strncpy(nomeImpresso, nomeValido, 20);
+        telaEscrever(58, 12, nomeImpresso);
     }
 
     totalVacinas = valorVacina1 + valorVacina2 + valorVacina3 + valorVacina4;
@@ -644,7 +667,7 @@ void incluirAtendimento(void)
     salvarAtendimentos();
     salvarDashBoard();
 
-    telaEscreverCentralizado("Atendimento cadastrado!", 0, 80, 22);
+    telaEscreverCentralizado("Atendimento cadastrado!", 0, 85, 22);
     getchar();
     getchar();
 }
