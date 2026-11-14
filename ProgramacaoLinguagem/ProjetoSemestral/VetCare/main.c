@@ -11,6 +11,7 @@
 #include "servico.h"
 #include "historico.h"
 #include "relatorio.h"
+#include "faturamento.h"
 
 void menuCadastros(void)
 {
@@ -163,6 +164,10 @@ int main(void)
 
         case 7:
             emitirRelatorio();
+            break;
+
+        case 8:
+            emitirFaturamento();
             break;
 
         case 9:
