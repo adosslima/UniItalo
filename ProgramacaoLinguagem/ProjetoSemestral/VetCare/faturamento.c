@@ -57,6 +57,12 @@ void emitirFaturamento(void)
     char valFormatado[64];
     char valTexto[85];
 
+    int64_t totQtdAtendimento = 0;
+    int64_t totValAtentimento = 0;
+    int64_t totValVacina = 0;
+    int64_t totValExame = 0;
+    int64_t totValData = 0;
+
     Faturamento faturamento = {0};
 
     for (int i = 0; i < totalAtendimentos; i++)
@@ -129,8 +135,51 @@ void emitirFaturamento(void)
         telaEscrever(66, linha, valTexto);
 
         linha++;
+
+        totQtdAtendimento += faturamentos[i].qtdAtendimento;
+        totValAtentimento += faturamentos[i].totAtendimento;
+        totValExame += faturamentos[i].totExame;
+        totValVacina += faturamentos[i].totVacina;
+        totValData += faturamentos[i].totData;
     }
 
+    telaPosicionarCursor(0, linha);
+    printf("%c", 186);
+    printf("%*s", 78, " ");
+    telaPosicionarCursor(79, linha);
+    printf("%c", 186);
+
+    telaEscrever(3, linha, "---------- ------------ ------------ ------------ ------------ ------------");
+
+    linha++;
+    telaPosicionarCursor(0, linha);
+    printf("%c", 186);
+    printf("%*s", 78, " ");
+    telaPosicionarCursor(79, linha);
+    printf("%c", 186);
+
+    telaEscrever(3, linha, "TOTAL");
+
+    snprintf(quantidade, sizeof(quantidade), "%" PRId64, totQtdAtendimento);
+    telaEscrever(21, linha, quantidade);
+
+    formatarMoeda(totValAtentimento, valFormatado, sizeof(valFormatado));
+    snprintf(valTexto, sizeof(valTexto), "%s", valFormatado);
+    telaEscrever(27, linha, valTexto);
+
+    formatarMoeda(totValExame, valFormatado, sizeof(valFormatado));
+    snprintf(valTexto, sizeof(valTexto), "%s", valFormatado);
+    telaEscrever(40, linha, valTexto);
+
+    formatarMoeda(totValVacina, valFormatado, sizeof(valFormatado));
+    snprintf(valTexto, sizeof(valTexto), "%s", valFormatado);
+    telaEscrever(53, linha, valTexto);
+
+    formatarMoeda(totValData, valFormatado, sizeof(valFormatado));
+    snprintf(valTexto, sizeof(valTexto), "%s", valFormatado);
+    telaEscrever(66, linha, valTexto);
+
+    linha++;
     telaPosicionarCursor(0, linha);
     printf("%c", 186);
     printf("%*s", 78, " ");
