@@ -24,16 +24,14 @@ static int totalFaturamentos = 0;
 Função Buscar Indice
 ---------------------------------
 */
-static int buscarIndice(char data[11])
+static int buscarIndice(const char *data)
 {
     for (int i = 0; i < totalFaturamentos; i++)
     {
-        printf("%s", faturamentos[i].data);
-        getchar();
-        getchar();
-
-        if (faturamentos[i].data == data)
+        if (strcmp(faturamentos[i].data, data) == 0)
+        {
             return i;
+        }
     }
 
     return -1;
@@ -50,10 +48,12 @@ void emitirFaturamento(void)
 
     carregarAtendimentos();
 
-    char quantidade[11];
+    totalFaturamentos = 0;
+
     int indice = 0;
     int linha = 9;
 
+    char quantidade[11];
     char valFormatado[64];
     char valTexto[85];
 
@@ -65,19 +65,27 @@ void emitirFaturamento(void)
 
         if (indice == -1)
         {
-            totalFaturamentos++;
-            indice = totalFaturamentos;
+            if (totalFaturamentos >= MAX_FATURAMENTOS)
+            {
+                telaEscreverCentralizado("Limite de faturamentos atingido!", 0, 85, 22);
+                return;
+            }
+
+            indice = totalFaturamentos++;
+
             faturamento = (Faturamento){0};
         }
         else
+        {
             faturamento = faturamentos[indice];
+        }
 
         snprintf(faturamento.data, sizeof(faturamento.data), "%s", atendimentos[i].dataAtendimento);
         faturamento.qtdAtendimento++;
         faturamento.totAtendimento += atendimentos[i].valAtendimento;
         faturamento.totVacina += atendimentos[i].totVacina;
         faturamento.totExame += atendimentos[i].totExame;
-        faturamento.totData += (atendimentos[i].valAtendimento + atendimentos[i].totVacina + atendimentos[i].totExame);
+        faturamento.totData += atendimentos[i].valAtendimento + atendimentos[i].totVacina + atendimentos[i].totExame;
 
         faturamentos[indice] = faturamento;
     }
@@ -106,19 +114,19 @@ void emitirFaturamento(void)
 
         formatarMoeda(faturamentos[i].totAtendimento, valFormatado, sizeof(valFormatado));
         snprintf(valTexto, sizeof(valTexto), "%s", valFormatado);
-        telaEscrever(30, linha, valTexto);
+        telaEscrever(27, linha, valTexto);
 
         formatarMoeda(faturamentos[i].totExame, valFormatado, sizeof(valFormatado));
         snprintf(valTexto, sizeof(valTexto), "%s", valFormatado);
-        telaEscrever(44, linha, valTexto);
+        telaEscrever(40, linha, valTexto);
 
         formatarMoeda(faturamentos[i].totVacina, valFormatado, sizeof(valFormatado));
         snprintf(valTexto, sizeof(valTexto), "%s", valFormatado);
-        telaEscrever(57, linha, valTexto);
+        telaEscrever(53, linha, valTexto);
 
         formatarMoeda(faturamentos[i].totData, valFormatado, sizeof(valFormatado));
         snprintf(valTexto, sizeof(valTexto), "%s", valFormatado);
-        telaEscrever(70, linha, valTexto);
+        telaEscrever(66, linha, valTexto);
 
         linha++;
     }

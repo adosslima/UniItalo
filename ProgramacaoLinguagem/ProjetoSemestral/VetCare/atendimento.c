@@ -156,7 +156,7 @@ void salvarDashBoard(void)
             "        \"qtdVacina\": %d,\n"
             "        \"valVacima\": %" PRId64 ",\n"
             "        \"qtdExame\": %d,\n"
-            "        \"valExame\": %" PRId64 ",\n"
+            "        \"valExame\": %" PRId64 " \n"
             "    }%s\n",
             qtdAtendimento,
             valAtendimento,
@@ -184,7 +184,7 @@ void carregarAtendimentos(void)
     if (arquivo == NULL)
         return;
 
-    char linha[800];
+    char linha[10000];
     Atendimento atendimento = {0};
 
     while (fgets(linha, sizeof(linha), arquivo) != NULL)

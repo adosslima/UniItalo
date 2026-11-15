@@ -56,7 +56,7 @@ void emitirRelatorio(void)
             codPet = atendimentos[i].codPet;
             validarPet(codPet, nomeValido);
 
-            snprintf(nomeImpresso, sizeof(nomeImpresso), "Cod.Pet: %s", nomeValido);
+            snprintf(nomeImpresso, sizeof(nomeImpresso), "Pet: %s", nomeValido);
             telaEscrever(4, linha, nomeImpresso);
 
             linha++;
